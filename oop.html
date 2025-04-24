@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>프로그래밍 패러다임: 객체지향 프로그래밍 (OOP)</title>
+<style>
+body {
+font-family: sans-serif;
+line-height: 1.6;
+background-color: #f8f8f8;
+padding: 20px;
+}
+.container {
+max-width: 800px;
+margin: 20px auto;
+padding: 30px;
+background-color: #fff;
+border-radius: 8px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+h1, h2, h3 {
+color: #333;
+text-align: center;
+}
+h1 {
+font-size: 2.5em;
+margin-bottom: 1em;
+}
+h2 {
+border-bottom: 2px solid #eee;
+padding-bottom: 0.5em;
+margin-bottom: 1em;
+}
+p {
+margin-bottom: 1.2em;
+color: #555;
+}
+.center {
+text-align: center;
+}
+img {
+max-width: 500px;
+height: auto;
+display: block;
+margin: 20px auto;
+border-radius: 4px;
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+iframe {
+display: block;
+width: 100%;
+max-width: 560px;
+height: 315px;
+margin: 20px auto;
+border: 0;
+border-radius: 4px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+hr {
+border: 0;
+height: 1px;
+background: #eee;
+margin: 2em 0;
+}
+ul {
+padding-left: 30px;
+margin-bottom: 1em;
+color: #555;
+}
+li {
+margin-bottom: 0.5em;
+}
+b {
+font-weight: bold;
+color: #333;
+}
+em {
+display: block;
+text-align: center;
+color: #777;
+font-style: italic;
+margin-top: 1em;
+margin-bottom: 1em;
+}
+pre {
+background-color: #f0f0f0;
+padding: 15px;
+border-radius: 4px;
+overflow-x: auto;
+font-family: monospace;
+font-size: 1em;
+line-height: 1.4;
+margin-bottom: 1em;
+}
+code {
+font-family: monospace;
+font-size: 1em;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1 class="center">프로그래밍의 새로운 관점, 객체지향 프로그래밍 (OOP)</h1>
+
+<p>우리가 컴퓨터에게 작업을 시키기 위해 사용하는 텍스트 코딩, 즉 프로그래밍에는 다양한 **패러다임(paradigm)**, 즉 사고방식 또는 스타일이 존재합니다. 그중에서도 현대 프로그래밍에서 가장 널리 사용되는 패러다임 중 하나가 바로 **객체지향 프로그래밍 (Object-Oriented Programming, OOP)**입니다.</p>
+
+    <h2>프로그래밍 패러다임이란?</h2>
+
+    <p>프로그래밍 패러다임은 프로그래머가 코드를 작성하고 구성하는 방식을 정의하는 일종의 틀입니다. 마치 글을 쓸 때 다양한 문체나 구조가 있는 것처럼, 프로그래밍에도 문제를 해결하고 코드를 작성하는 여러 가지 접근 방식이 있는 것이죠.</p>
+
+    <h2>객체지향 프로그래밍 (OOP) 이란?</h2>
+
+    <p>객체지향 프로그래밍은 현실 세계의 사물이나 개념을 **객체(object)**라는 단위로 추상화하여 프로그램을 개발하는 방식입니다. 객체는 **데이터(속성, 상태)**와 **그 데이터를 조작하는 기능(메서드, 행위)**을 함께 묶어서 표현합니다.</p>
+
+    <p>예를 들어, 게임 속 캐릭터를 객체로 생각한다면, 캐릭터의 이름, 체력, 공격력 등은 데이터(속성)가 되고, 움직이기, 공격하기, 아이템 사용하기 등은 기능(메서드)이 되는 것입니다.</p>
+
+    <div class="center">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJuZlgmYi2o0TsorbauZgl8RRXVxEyrdxU8A&s" alt="객체지향 프로그래밍 개념도" width="400">
+        <br>
+        객체와 클래스의 관계를 보여주는 개념도<br>(출처: Network Security)
+    </div>
+
+    <h2>객체지향 프로그래밍의 주요 특징</h2>
+
+    <p>객체지향 프로그래밍은 코드의 구조를 체계화하고 유지보수를 용이하게 하는 여러 가지 중요한 특징을 가지고 있습니다.</p>
+
+    <ul>
+        <li><b>클래스(Class)와 객체(Object):</b>
+            <ul>
+                <li><b>클래스:</b> 객체를 만들기 위한 설계도 또는 틀입니다. 속성과 메서드를 정의합니다.</li>
+                <li><b>객체:</b> 클래스를 기반으로 실제로 생성된 실체입니다. 클래스에 정의된 속성과 메서드를 가집니다.</li>
+            </ul>
+        </li>
+        <li><b>캡슐화(Encapsulation):</b> 객체의 데이터(속성)와 그 데이터를 다루는 메서드를 하나로 묶고, 외부로부터 직접적인 접근을 제한하여 데이터의 무결성을 보호합니다. 마치 서랍장에 물건을 넣어 잠그는 것과 같습니다.</li>
+        <li><b>상속(Inheritance):</b> 기존 클래스의 속성과 메서드를 물려받아 새로운 클래스를 만들 수 있습니다. 코드의 재사용성을 높이고 클래스 간의 계층 구조를 형성할 수 있습니다. 마치 부모님의 유산을 물려받는 것과 같습니다.</li>
+        <li><b>다형성(Polymorphism):</b> 하나의 이름으로 여러 형태의 객체를 다룰 수 있는 능력입니다. 예를 들어, "소리 내기"라는 메서드가 동물 클래스에서는 울음소리를, 악기 클래스에서는 연주 소리를 내도록 다르게 구현될 수 있습니다.</li>
+        <li><b>추상화(Abstraction):</b> 복잡한 내부 구현은 숨기고, 외부에는 필요한 정보만 간결하게 제공하여 사용자가 객체를 쉽게 이해하고 사용할 수 있도록 합니다. 마치 자동차를 운전할 때 내부 작동 방식을 몰라도 운전할 수 있는 것과 같습니다.</li>
+    </ul>
+
+    <h2>객체지향 프로그래밍의 장점</h2>
+
+    <ul>
+        <li><b>코드 재사용성 증가:</b> 상속을 통해 기존 코드를 재활용하여 개발 시간을 단축하고 코드의 중복을 줄일 수 있습니다.</li>
+        <li><b>유지보수 용이성 향상:</b> 객체 단위로 코드가 분리되어 있어 수정이나 확장이 용이하고, 오류 발생 시 영향을 미치는 범위를 줄일 수 있습니다.</li>
+        <li><b>코드의 모듈화:</b> 객체라는 독립적인 단위로 프로그램을 구성하여 코드의 이해도와 관리 효율성을 높일 수 있습니다.</li>
+        <li><b>현실 세계 모델링 용이:</b> 현실 세계의 사물과 개념을 객체로 자연스럽게 매핑하여 프로그램을 직관적으로 설계할 수 있습니다.</li>
+        <li><b>협업 용이성 증대:</b> 객체 단위로 개발이 진행되므로 여러 개발자가 동시에 작업하기 용이합니다.</li>
+    </ul>
+
+    <h2>객체지향 프로그래밍 활용 예시</h2>
+
+    <p>객체지향 프로그래밍은 게임 개발뿐만 아니라 다양한 소프트웨어 개발 분야에서 널리 활용됩니다.</p>
+
+    <ul>
+        <li><b>게임 개발:</b> 캐릭터, 아이템, 배경, UI 등 게임의 모든 요소를 객체로 설계하고 구현합니다. (Unity의 C# 스크립팅 등)</li>
+        <li><b>GUI (그래픽 사용자 인터페이스) 개발:</b> 버튼, 윈도우, 메뉴 등 화면 요소를 객체로 관리합니다.</li>
+        <li><b>웹 개발 (백엔드):</b> 사용자, 게시글, 댓글 등 웹 서비스의 데이터를 객체로 표현하고 로직을 구현합니다. (Python의 Django, Java, C# 등)</li>
+        <li><b>엔터프라이즈 시스템:</b> 고객, 주문, 상품 등 비즈니스 로직을 객체 단위로 모델링합니다.</li>
+    </ul>
+
+    <em class="center">객체지향 프로그래밍 개념 설명 영상 (객체, 클래스, 상속, 다형성 등의 핵심 개념을 시각적으로 이해해보세요!)</em>
+
+    <div class="center" style="position: relative; width: 100%; max-width: 560px; padding-bottom: 56.25%; margin: 20px auto;">
+        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://youtu.be/yBs0ic7pVvk?si=38rw2TaGhlfe7NkA" title="객체지향 프로그래밍 개념 설명" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <br>
+
+    <p>객체지향 프로그래밍은 코드를 더욱 체계적이고 효율적으로 관리할 수 있도록 도와주는 강력한 프로그래밍 패러다임입니다. 이 개념을 이해하고 활용하면 더욱 수준 높은 소프트웨어 개발 능력을 갖출 수 있을 것입니다.</p>
+</div>
+
+</body>
+</html>
