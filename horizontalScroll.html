@@ -1,35 +1,128 @@
-<h1>
-    횡스크롤 게임 - 슈팅 게임!
-</h1>
-    <h2>
-        옆으로 쭉쭉! 신나는 모험, 횡스크롤 게임!
-    </h2>
-        어렸을 때 한 번쯤은 해보셨을 거예요. 화면이 옆으로 쭉쭉 넘어가는 게임! 마치 우리가 옆으로 걸어가듯이, 캐릭터도 왼쪽이나 오른쪽으로 움직이며 모험을 떠나는 게임들을 횡스크롤 게임이라고 부릅니다.
-<img src="https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.png" alt="슈퍼 마리오 브라더스 박스 아트" width="200" style="display: block; margin: 10px auto;">
-<br>
-횡스크롤 게임의 대표 주자, 슈퍼 마리오 브라더스!
-뿅뿅! 적들을 물리치는 재미, 슈팅 게임!
-이번에는 슈팅 게임이에요! 슈팅 게임은 주로 무기나 특별한 능력을 사용해서 화면에 나오는 적들을 뿅뿅 물리치는 게임을 말합니다. 시원하게 총을 쏘거나, 마법을 발사하거나, 점프해서 적을 밟는 것도 슈팅 액션의 일종이 될 수 있죠!
-<img src="https://upload.wikimedia.org/wikipedia/en/7/7a/Contra_%28arcade_game%29.png" alt="콘트라 박스 아트" width="200" style="display: block; margin: 10px auto;">
-<br>
-신나는 슈팅 액션이 가득한 콘트라!
-횡스크롤과 슈팅의 만남! 슈퍼 마리오!
-우리가 너무나 잘 아는 게임, 슈퍼 마리오는 바로 이 횡스크롤 게임이면서 동시에 슈팅 게임의 요소도 가지고 있는 재미있는 게임입니다!
-<h2>
-    🎮 슈퍼 마리오 게임 방식 살짝 엿보기!
-</h2>
-마리오는 화면이 옆으로 쭉 넘어가는 배경 속에서 왼쪽이나 오른쪽으로 움직이며 모험을 합니다. (횡스크롤)
-길을 가면서 점프를 해서 적을 밟아 물리치기도 하고, 특별한 아이템 (예: 파이어 플라워)을 먹으면 불꽃을 던져서 멀리 있는 적을 공격할 수도 있습니다. (슈팅)
+<!DOCTYPE html>
 
-*[슈퍼 마리오 월드 플레이 영상 (화면이 옆으로 이동하고, 점프와 아이템으로 적을 공격하는 모습을 확인해보세요!)]*
-왜 슈퍼 마리오가 횡스크롤 슈팅 게임의 좋은 예시일까요?
-쉽고 직관적인 조작: 누구나 쉽게 이해하고 즐길 수 있는 간단한 조작 방식을 가지고 있습니다.
-다양한 액션: 점프, 달리기, 아이템 사용 등 다채로운 액션으로 지루할 틈이 없습니다.
-점점 어려워지는 재미: 레벨이 올라갈수록 새로운 적과 장애물이 등장하여 도전 정신을 자극합니다.
-오랜 시간 사랑받는 명작: 남녀노소, 시대를 초월하여 오랫동안 많은 사람들에게 사랑받는 게임입니다.
-이처럼 횡스크롤 슈팅 게임은 옆으로 이동하며 적을 물리치는 기본적인 재미에 다양한 요소들이 더해져 더욱 흥미진진한 경험을 선사합니다. 코딩 도장에서도 이렇게 재미있는 횡스크롤 슈팅 게임을 직접 만들어 볼 수 있다는 사실! 함께 코딩의 세계로 빠져볼까요?
+<html>
+<head>
+<meta charset="utf-8">
+<title>횡스크롤 슈팅 게임!</title>
+<style>
+body {
+font-family: sans-serif;
+line-height: 1.6;
+background-color: #f8f8f8; /* 밝은 배경색 추가 */
+padding: 20px;
+}
+.container {
+max-width: 800px;
+margin: 20px auto;
+padding: 30px;
+background-color: #fff;
+border-radius: 8px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+h1, h2, h3 {
+color: #333;
+text-align: center; /* 제목 중앙 정렬 */
+}
+h1 {
+font-size: 2.5em;
+margin-bottom: 1em;
+}
+h2 {
+border-bottom: 2px solid #eee;
+padding-bottom: 0.5em;
+margin-bottom: 1em;
+}
+p {
+margin-bottom: 1.2em;
+color: #555;
+}
+.center {
+text-align: center;
+}
+img {
+max-width: 200px;
+height: auto;
+display: block;
+margin: 20px auto; /* 상하 마진 증가 */
+border-radius: 4px; /* 이미지 테두리 둥글게 */
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* 이미지 그림자 */
+}
+iframe {
+display: block;
+width: 100%;
+max-width: 560px;
+height: 315px;
+margin: 20px auto; /* 상하 마진 증가 */
+border: 0;
+border-radius: 4px; /* 영상 테두리 둥글게 */
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 영상 그림자 */
+}
+ul {
+padding-left: 30px;
+margin-bottom: 1em;
+color: #555;
+}
+li {
+margin-bottom: 0.5em;
+}
+em {
+display: block; /* 강조 문구를 가운데 정렬 용도로 블록 요소로 변경 */
+text-align: center;
+color: #777;
+font-style: italic;
+margin-top: 1em;
+margin-bottom: 1em;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1 class="center">횡스크롤 게임 - 슈팅 게임!</h1>
 
-<div style="position: relative; width: 100%; padding-bottom: 56.25%; margin: 10px 0;">
-    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/watch?v=rLl9XBg7wSs&t=213s" title="슈퍼 마리오 월드 플레이 영상" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<h2 class="center">옆으로 쭉쭉! 신나는 모험, 횡스크롤 게임!</h2>
+
+    <p>어렸을 때 한 번쯤은 해보셨을 거예요. 화면이 옆으로 쭉쭉 넘어가는 게임! 마치 우리가 옆으로 걸어가듯이, 캐릭터도 왼쪽이나 오른쪽으로 움직이며 모험을 떠나는 게임들을 횡스크롤 게임이라고 부릅니다.</p>
+
+    <div class="center">
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.png" alt="슈퍼 마리오 브라더스 박스 아트">
+        <br>
+        횡스크롤 게임의 대표 주자, 슈퍼 마리오 브라더스!
+    </div>
+
+    <h2 class="center">뿅뿅! 적들을 물리치는 재미, 슈팅 게임!</h2>
+
+    <p>이번에는 슈팅 게임이에요! 슈팅 게임은 주로 무기나 특별한 능력을 사용해서 화면에 나오는 적들을 뿅뿅 물리치는 게임을 말합니다. 시원하게 총을 쏘거나, 마법을 발사하거나, 점프해서 적을 밟는 것도 슈팅 액션의 일종이 될 수 있죠!</p>
+
+    <div class="center">
+        <img src="https://upload.wikimedia.org/wikipedia/en/7/7a/Contra_%28arcade_game%29.png" alt="콘트라 박스 아트">
+        <br>
+        신나는 슈팅 액션이 가득한 콘트라!
+    </div>
+
+    <h2 class="center">횡스크롤과 슈팅의 만남! 슈퍼 마리오!</h2>
+
+    <p>우리가 너무나 잘 아는 게임, 슈퍼 마리오는 바로 이 횡스크롤 게임이면서 동시에 슈팅 게임의 요소도 가지고 있는 재미있는 게임입니다!</p>
+
+    <h2 class="center">🎮 슈퍼 마리오 게임 방식 살짝 엿보기!</h2>
+
+    <p>마리오는 화면이 옆으로 쭉 넘어가는 배경 속에서 왼쪽이나 오른쪽으로 움직이며 모험을 합니다. (횡스크롤)</p>
+    <p>길을 가면서 점프를 해서 적을 밟아 물리치기도 하고, 특별한 아이템 (예: 파이어 플라워)을 먹으면 불꽃을 던져서 멀리 있는 적을 공격할 수도 있습니다. (슈팅)</p>
+    <div class="center" style="position: relative; width: 100%; max-width: 560px; padding-bottom: 56.25%; margin: 20px auto;">
+        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/rLl9XBg7wSs?t=213s" title="슈퍼 마리오 월드 플레이 영상" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <em class="center">슈퍼 마리오 월드 플레이 영상 (화면이 옆으로 이동하고, 점프와 아이템으로 적을 공격하는 모습을 확인해보세요!)</em>
+
+    <p>왜 슈퍼 마리오가 횡스크롤 슈팅 게임의 좋은 예시일까요?</p>
+    <ul>
+        <li><b>쉽고 직관적인 조작:</b> 누구나 쉽게 이해하고 즐길 수 있는 간단한 조작 방식을 가지고 있습니다.</li>
+        <li><b>다양한 액션:</b> 점프, 달리기, 아이템 사용 등 다채로운 액션으로 지루할 틈이 없습니다.</li>
+        <li><b>점점 어려워지는 재미:</b> 레벨이 올라갈수록 새로운 적과 장애물이 등장하여 도전 정신을 자극합니다.</li>
+        <li><b>오랜 시간 사랑받는 명작:</b> 남녀노소, 시대를 초월하여 오랫동안 많은 사람들에게 사랑받는 게임입니다.</li>
+    </ul>
+
+    <p>이처럼 횡스크롤 슈팅 게임은 옆으로 이동하며 적을 물리치는 기본적인 재미에 다양한 요소들이 더해져 더욱 흥미진진한 경험을 선사합니다. 코딩 도장에서도 이렇게 재미있는 횡스크롤 슈팅 게임을 직접 만들어 볼 수 있다는 사실! 함께 코딩의 세계로 빠져볼까요?</p>
+    <br>
 </div>
-<br>
+
+</body>
+</html>
