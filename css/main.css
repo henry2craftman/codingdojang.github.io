@@ -69,6 +69,7 @@
     min-width: 200px;      /* 버튼 최소 너비 (선택 사항) */
     text-align: center;
     box-sizing: border-box;
+    background-color: #4dbc70;
 }
 
 /* 호버 효과 (공통) */
@@ -90,6 +91,7 @@
 .kakao-button { /* 카카오톡 상담 버튼 */
     background-color: #FEE500; /* 카카오 노란색 */
     color: #191919; /* 카카오 검정/갈색 */
+    font-weight: bold;
 }
 .kakao-button:hover {
     background-color: #F0D900;
