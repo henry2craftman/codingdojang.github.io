@@ -41,6 +41,21 @@
             cursor: pointer; 
             font-weight: bold;
         }
+    
+        .kakao-button { /* 카카오톡 상담 버튼 */
+            padding: 12px 25px; 
+            font-size: 18px; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-weight: bold;
+            background-color: #FEE500; /* 카카오 노란색 */
+            color: #191919; /* 카카오 검정/갈색 */
+        }
+        .kakao-button:hover {
+            background-color: #F0D900;
+        }
         .submit-button:hover { background-color: #E65C00; }
         small { font-size: 0.85em; color: #666; display: block; margin-top: 3px;}
 
@@ -151,13 +166,24 @@
         <a href="/privacy-policy" target="_blank">(개인정보처리방침 보기)</a> 
     </div>
 
-    <!-- 제출 버튼 -->
-    <div class="submit-button-container">
-        <button type="submit" id="submitBtn" class="submit-button">무료 체험수업 신청하기</button>
+    <!-- 제출 버튼 및 상담 링크 컨테이너 -->
+    <div class="submit-button-container"> 
+        <!-- 기존 폼 제출 버튼 -->
+        <!-- 클래스에 primary-button 추가 -->
+        <button type="submit" id="submitBtn" class="submit-button primary-button">무료 체험수업 신청하기</button> 
+    </a>
+    
+    <div class="button-container" style="text-align: center;"> 
+        <section class="cta-section">
+            <button href="/contact.html" class="cta-button kakao-button">교육 상담 문의</a>  <!-- 실제 링크로 변경 -->
+        </section>   
     </div>
+</div>
 
     <!-- 제출 결과 메시지 표시 영역 -->
     <div id="formResult" style="margin-top: 15px; text-align: center;"></div> 
+
+
 </form>
 
 <!-- JavaScript (폼 제출 처리 및 결과 표시) -->
@@ -201,6 +227,7 @@
     });
 </script>
 
+
     <!-- 하단 안내 -->
     <div class="content-section" style="text-align: center; font-size: 0.9em; color: #555;">
         <p>* 신청서 확인 후, 담당자가 1~2일 이내로 연락드려 수업 가능 일정을 확정합니다.<br>
@@ -210,7 +237,7 @@
 
     <!-- 푸터 영역 예시 -->
     <footer style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.8em; color: #777;">
-        Copyright © 2024 코딩도장. All Rights Reserved. <br>
+        Copyright © 2024 코딩도장 coding dojang. All Rights Reserved. <br>
         [주소 입력] | [사업자등록번호 입력] | <a href="#terms">이용약관</a> | <a href="#privacy">개인정보처리방침</a>
     </footer>
 

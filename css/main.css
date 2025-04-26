@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@800&family=Maven+Pro:wght@900&family=Roboto:wght@500&family=Ubuntu:wght@700&display=swap');
 
-:root{
+:root {
     /* colors  */
     --backcolor:#12181c;
     --fontcolor:#eeeae1;
@@ -33,73 +33,123 @@
     --toggleimg:url(../media/menu-alt.png);
     --toggleactiveimg:url(../media/menu-x.png);
     --merback:url(../media/mer-bg.jpg);
-
     /*-------------------*/
-    .button-container {
-        /* 필요하다면 위아래 여백 추가 */
-        margin-top: 20px;
-        margin-bottom: 20px;
-      }
-      
-      .cta-button {
-        /* 버튼 기본 스타일 */
-        padding: 10px 20px; /* 안쪽 여백 */
-        font-size: 16px;    /* 글자 크기 */
-        cursor: pointer;    /* 마우스 커서 모양 */
-        border: none;       /* 테두리 없애기 */
-        border-radius: 5px; /* 모서리 둥글게 */
-        background-color: #4CAF50; /* 배경색 (예시) */
-        color: white;           /* 글자색 */
-        
-        /* 버튼 사이 간격 */
-        margin-left: 5px; 
-        margin-right: 5px;
-      }
-      
-      /* 첫 번째 버튼에는 왼쪽 마진 불필요 */
-      .cta-button:first-child {
-        margin-left: 0;
-      }
-      
-      /* 마지막 버튼에는 오른쪽 마진 불필요 */
-      .cta-button:last-child {
-        margin-right: 0;
-      }
-      
-      /* 마우스 올렸을 때 효과 (선택) */
-      .cta-button:hover {
-        background-color: #45a049; 
-      }    
+
+} /* <<<--- :root 닫는 중괄호 추가! */
+
+/* ======================================== */
+/* == 버튼 관련 스타일 (수정 및 정리) == */
+/* ======================================== */
+
+/* 제출 버튼 및 상담 링크 컨테이너를 Flexbox로 중앙 정렬 */
+.submit-button-container {
+    display: flex;             /* Flexbox 컨테이너로 지정 */
+    justify-content: center; /* 자식 요소들을 가로축 중앙에 정렬 */
+    align-items: center;     /* 자식 요소들을 세로축 중앙에 정렬 */
+    gap: 15px;               /* 버튼 사이의 간격을 15px로 지정 */
+    flex-wrap: wrap;         /* 화면 너비가 좁을 때 버튼이 아래로 떨어지도록 */
+    margin-top: 20px;        /* 버튼들 위쪽 여백 */
 }
-::-webkit-scrollbar{
+
+/* 공통 버튼 스타일 (폼 제출 버튼과 링크형 버튼 모두 적용) */
+.submit-button, /* <button type="submit"> */
+.cta-button {   /* <a> 링크 태그 */
+    display: inline-flex; /* 아이콘 포함 및 정렬 위해 */
+    align-items: center;
+    justify-content: center;
+    padding: 12px 25px;    /* 안쪽 여백 */
+    font-size: 18px;       /* 글자 크기 */
+    font-family: var(--navfont, sans-serif); /* 네비게이션 폰트 또는 기본 폰트 사용 */
+    font-weight: bold;
+    text-decoration: none; /* 링크 밑줄 제거 */
+    cursor: pointer;
+    border: none;          /* 테두리 없음 */
+    border-radius: 5px;    /* 모서리 둥글게 */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
+    min-width: 200px;      /* 버튼 최소 너비 (선택 사항) */
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* 호버 효과 (공통) */
+.submit-button:hover,
+.cta-button:hover {
+    transform: translateY(-2px); /* 살짝 위로 */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 그림자 */
+}
+
+/* 개별 버튼 색상 스타일 */
+.primary-button { /* 무료 체험수업 신청 버튼 */
+    background-color: #FF6600; /* 코딩도장 메인 컬러 (직접 지정) */
+    color: white;
+}
+.primary-button:hover {
+    background-color: #E65C00;
+}
+
+.kakao-button { /* 카카오톡 상담 버튼 */
+    background-color: #FEE500; /* 카카오 노란색 */
+    color: #191919; /* 카카오 검정/갈색 */
+}
+.kakao-button:hover {
+    background-color: #F0D900;
+}
+
+/* 제출 버튼 비활성화 시 스타일 */
+.submit-button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* 카카오톡 아이콘 스타일 (필요시 주석 해제 후 사용) */
+/*
+.kakao-icon {
+    width: 24px;
+    height: auto;
+    margin-right: 8px;
+}
+*/
+/* ======================================== */
+/* == 버튼 관련 스타일 끝 == */
+/* ======================================== */
+
+
+/* --- 스크롤바 스타일 --- */
+::-webkit-scrollbar {
     width:12px ;
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
     background: linear-gradient(var(--btncolor),var(--btncolor));
     border-radius: 8px;
 }
-::-webkit-scrollbar-track{
+::-webkit-scrollbar-track {
     background: var(--backcolor);
 }
-*{
+
+/* --- 기본 스타일 및 리셋 --- */
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-html{
+html {
     scroll-behavior: smooth;
 }
-body{
+body {
     background-color: var(--backcolor);
-    /* height: 10000px; */
 }
-p{
+p {
     color: var(--fontcolor);
     font-family: var(--pfont);
 }
-section{
-    padding: 100px;
+section {
+    padding: 100px; /* 섹션 패딩은 페이지 구조에 맞게 조절 필요 */
 }
+
+/* --- 이하 네비게이션, 배너, 어바웃 등 기존 스타일 --- */
 /* navbar  */
 nav {
     position: fixed;
@@ -156,6 +206,8 @@ nav .navigation li a:hover{
     transition: all 0.75s ease-out;
 
 }
+
+/* ... (이하 나머지 CSS 코드는 생략, 기존 코드 유지) ... */
 
 /*---------*/
 
