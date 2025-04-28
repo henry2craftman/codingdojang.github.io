@@ -33,7 +33,7 @@
         .submit-button-container { text-align: center; margin-top: 20px; }
         .submit-button { 
             padding: 12px 25px; 
-            font-size: 18px; 
+            font-size: 15px; 
             background-color: #FF6600; /* 코딩도장 메인 컬러 (예시) */
             color: white; 
             border: none; 
@@ -44,7 +44,7 @@
     
         .kakao-button { /* 카카오톡 상담 버튼 */
             padding: 12px 25px; 
-            font-size: 18px; 
+            font-size: 15px; 
             color: white; 
             border: none; 
             border-radius: 5px; 
@@ -68,6 +68,35 @@
             border-radius: 8px;
             background-color: #f9f9f9; /* 배경색 (선택 사항) */
         }
+
+          /* ===== 플로팅 홈 버튼 스타일 시작 ===== */
+          .floating-home-button {
+            position: fixed; /* 화면에 고정 */
+            bottom: 20px;    /* 화면 하단에서 20px 위 */
+            right: 20px;     /* 화면 오른쪽에서 20px 왼쪽 */
+            z-index: 1000;   /* 다른 요소들 위에 표시 */
+
+            background-color: #FF6600; /* 버튼 배경색 (기존 버튼과 통일) */
+            color: white;             /* 아이콘/텍스트 색상 */
+            width: 50px;              /* 버튼 너비 */
+            height: 50px;             /* 버튼 높이 */
+            border-radius: 50%;       /* 원형 버튼 */
+            
+            display: flex;            /* 내부 요소(아이콘) 정렬을 위해 */
+            justify-content: center;  /* 가로 중앙 정렬 */
+            align-items: center;      /* 세로 중앙 정렬 */
+            
+            font-size: 24px;          /* 아이콘 크기 (텍스트/이모지 사용 시) */
+            text-decoration: none;    /* 링크 밑줄 제거 */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 그림자 효과 */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* 부드러운 전환 효과 */
+        }
+
+        .floating-home-button:hover {
+            background-color: #E65C00; /* 호버 시 배경색 변경 */
+            transform: scale(1.05);   /* 약간 확대되는 효과 */
+        }
+        /* ===== 플로팅 홈 버튼 스타일 끝 ===== */
 
     </style>
     <!-- CSS 스타일 끝 -->
@@ -185,7 +214,7 @@
     <section class="cta-section">
         <button href="index.html" class="cta-button kakao-button">
             <a href="http://pf.kakao.com/_WYzxnn/chat" class="cta-button"   style="color: black; text-decoration: none;">
-                교육 상담 문의 (카카오톡 채널)
+                교육 상담 문의<br>(카카오톡 채널)
             </a>
         </button> 
     </section>   
@@ -237,7 +266,6 @@
     <div class="content-section" style="text-align: center; font-size: 0.9em; color: #555;">
         <p>* 신청서 확인 후, 담당자가 1~2일 이내로 연락드려 수업 가능 일정을 확정합니다.<br>
            * 체험수업은 정원이 정해져 있어 조기 마감될 수 있습니다.<br>
-           * 기타 문의사항은 <a href="#contact">문의하기(실제 링크 필요)</a> 또는 <strong>[전화번호 입력]</strong> 로 연락 바랍니다.</p>
     </div>
 
     <!-- 푸터 영역 예시 -->
@@ -245,6 +273,16 @@
         Copyright © 2025 코딩도장 coding dojang. All Rights Reserved. <br>
         서울 구로구 중앙로3길 12 서봉빌딩 405호 | 사업자등록번호 | <a href="#terms">이용약관</a> | <a href="#privacy">개인정보처리방침</a>
     </footer>
+
+    <!-- ===== 플로팅 홈 버튼 시작 ===== -->
+    <a href="index.html" class="floating-home-button" aria-label="홈으로 가기">
+        <!-- 홈 아이콘 (텍스트 또는 이미지/아이콘 폰트 사용 가능) -->
+        <span>🏠</span> 
+        <!-- 예시: Font Awesome 사용 시 -->
+        <!-- <i class="fas fa-home"></i> --> 
+    </a>
+    <!-- ===== 플로팅 홈 버튼 끝 ===== -->
+    
 
 </body>
 </html>
