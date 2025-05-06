@@ -41,6 +41,20 @@
             cursor: pointer; 
             font-weight: bold;
         }
+        .submit-button:hover { background-color: #E65C00; }
+        small { font-size: 0.85em; color: #666; display: block; margin-top: 3px;}
+        .reservation-button { 
+            padding: 12px 25px; 
+            font-size: 15px; 
+            background-color: #4dbc70; /* 코딩도장 메인 컬러 (예시) */
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-weight: bold;
+        }
+        .reservation-button:hover { background-color: #4dbc70; }
+        small { font-size: 0.85em; color: #666; display: block; margin-top: 3px;}
     
         .kakao-button { /* 카카오톡 상담 버튼 */
             padding: 12px 25px; 
@@ -56,8 +70,6 @@
         .kakao-button:hover {
             background-color: #F0D900;
         }
-        .submit-button:hover { background-color: #E65C00; }
-        small { font-size: 0.85em; color: #666; display: block; margin-top: 3px;}
 
         /* 추가: 섹션 구분 및 중앙 정렬을 위한 스타일 */
         .content-section {
@@ -205,12 +217,19 @@
     </a>
 </div>
     <!-- 제출 결과 메시지 표시 영역 -->
-    <div id="formResult" style="margin-top: 15px; text-align: center;"></div> 
+    <div id="formResult"  style="margin-top: 15px; text-align: center;"></div> 
 </form>
 
-<br>
 
 <div class="cta-button" style="text-align: center;"> 
+    <section class="cta-section">
+        <button href="submit.html" class="reservation-button primary-button">
+            <a href="submit.html" class="cta-button"   style="color: rgb(255, 255, 255); text-decoration: none;">
+                상담 예약하기
+            </a>
+        </button> 
+    </section> 
+    <br>
     <section class="cta-section">
         <button href="index.html" class="cta-button kakao-button">
             <a href="http://pf.kakao.com/_WYzxnn/chat" class="cta-button"   style="color: black; text-decoration: none;">
