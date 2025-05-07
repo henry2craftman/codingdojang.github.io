@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파이썬 기본 코딩 - 코딩도장 블로그</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- <link rel="stylesheet" href="css/blog.css"> --> <!-- blog.html과 동일한 CSS 사용 -->
+    <!-- 코드 하이라이팅을 위한 PrismJS 또는 highlight.js CSS (선택 사항) -->
+    <!-- <link rel="stylesheet" href="path/to/prism.css"> -->
+
+
+    <style>
+        /* news-category.html 또는 blog.html과 동일한 스타일을 사용한다고 가정 */
+        /* 필요한 경우 이 페이지 전용 스타일을 여기에 추가 */
+
+        .blog-page-container {
+            padding-top: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .blog-main-content {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .blog-posts-area {
+            flex: 3;
+        }
+        .blog-sidebar {
+            flex: 1;
+            background-color: rgba(43, 39, 39, 0.8);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            height: fit-content;
+            color: #fff;
+        }
+
+        .blog-posts-area > h1.category-title {
+            font-size: 2.5em;
+            color: #fff;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .blog-posts-area > p.category-description {
+            text-align: center;
+            color: #ccc;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        .breadcrumb {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .breadcrumb a {
+            color: #00FFFF;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* 파이썬 게시물 카드 스타일 (기존 blog-post-card 재활용) */
+        .blog-post-card {
+            background-color: #2b2727;
+            border: 1px solid #444;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease-in-out;
+            color: #fff;
+        }
+        .blog-post-card:hover {
+            transform: translateY(-5px);
+        }
+        .blog-post-card img.featured-image {
+            width: 100%;
+            height: 180px; /* 파이썬 로고나 관련 이미지 */
+            object-fit: contain; /* 로고 등이 잘리지 않도록 contain 사용 가능 */
+            background-color: #3a3a3a; /* 이미지 배경색 */
+            padding: 10px; /* 이미지 주변 여백 */
+        }
+        .blog-post-content { padding: 25px; }
+        .blog-post-content h2 { margin-top: 0; margin-bottom: 10px; }
+        .blog-post-content h2 a {
+            color: #37ffff;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+        .blog-post-content h2 a:hover { color: #00e0e0; }
+        .post-meta { font-size: 0.85em; color: #bbb; margin-bottom: 15px; }
+        .post-meta span { margin-right: 15px; }
+        .post-meta a { color: #00FFFF; text-decoration: none; }
+        .post-meta a:hover { text-decoration: underline; }
+        .post-excerpt { margin-bottom: 20px; line-height: 1.7; font-size: 1em; color: #e0e0e0;}
+        /* 코드 스니펫 예시 스타일 (간단하게) */
+        .post-excerpt pre {
+            background-color: #1e1e1e;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto; /* 가로 스크롤 */
+            font-size: 0.9em;
+            border: 1px solid #555;
+        }
+        .post-excerpt code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background-color: #00FFFF;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+        .read-more-btn:hover { background-color: #00e0e0; }
+
+
+        /* 사이드바 스타일 (news-category.html과 동일) */
+        .sidebar-widget { margin-bottom: 30px; }
+        .sidebar-widget h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            color: #37ffff;
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+        }
+        .sidebar-widget ul { list-style: none; padding: 0; }
+        .sidebar-widget ul li { margin-bottom: 10px; }
+        .sidebar-widget ul li a { text-decoration: none; color: #00FFFF; }
+        .sidebar-widget ul li a.active-category {
+            font-weight: bold;
+            color: #37ffff;
+        }
+        .sidebar-widget ul li a:hover { text-decoration: underline; color: #37ffff; }
+        .sidebar-widget input[type="search"] {
+            width: calc(100% - 80px);
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 4px 0 0 4px;
+            background-color: #333;
+            color: #fff;
+        }
+        .sidebar-widget button[type="submit"] {
+            padding: 10px 15px;
+            border: 1px solid #00FFFF;
+            background-color: #00FFFF;
+            color: #1e1e1e;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            margin-left: -5px;
+        }
+        .sidebar-widget button[type="submit"]:hover {
+            background-color: #00e0e0;
+        }
+
+        /* 반응형 (news-category.html과 동일) */
+        @media (max-width: 991px) {
+            .blog-main-content { flex-direction: column; }
+            .blog-sidebar { margin-top: 30px; }
+        }
+        @media (max-width: 768px) {
+            .blog-post-card img.featured-image { height: 150px; }
+            .blog-post-content h2 a { font-size: 1.3em; }
+        }
+    </style>
+</head>
+<body style="background-color: #1e1e1e;">
+
+    <nav>
+        <a href="index.html" class="logo">
+            <box-icon name='game' type='solid' color='#00FFFF' ></box-icon>코딩도장<span>coding dojang</span>
+        </a>
+        <div class="menuToggle" onclick="toggleMenu()">
+        </div>
+        <ul class="navigation">
+            <li><a href="index.html#banner" onclick="toggleMenu()">홈</a></li>
+            <li><a href="index.html#philosophy" onclick="toggleMenu()">소개</a></li>
+            <li><a href="index.html#games" onclick="toggleMenu()">결과물</a></li>
+            <li><a href="index.html#education" onclick="toggleMenu()">배움</a></li>
+            <li><a href="index.html#moreinfo" onclick="toggleMenu()">가치</a></li>
+            <li><a href="blog.html" onclick="toggleMenu()" class="active-nav-link">블로그</a></li>
+            <li><a href="index.html#contact" onclick="toggleMenu()">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="blog-page-container">
+
+        <div class="blog-main-content">
+
+            <main class="blog-posts-area">
+                <div class="breadcrumb" data-aos="fade-down">
+                    <a href="blog.html">블로그 홈</a> > <span>파이썬 기본 코딩</span>
+                </div>
+                <h1 class="category-title" data-aos="fade-down">파이썬 기본 코딩</h1>
+                <p class="category-description" data-aos="fade-down" data-aos-delay="100">
+                    가장 인기 있는 프로그래밍 언어, 파이썬! 코딩도장과 함께 변수부터 함수, 클래스까지 파이썬의 핵심 기초를 탄탄하게 다져보세요.
+                </p>
+
+                <!-- "파이썬 기본 코딩" 게시물 목록 -->
+                <article class="blog-post-card" data-aos="fade-up">
+                    <a href="single-post-python-1.html"> <!-- 파이썬 상세 페이지 링크 -->
+                        <!-- 파이썬 로고 또는 관련 이미지 -->
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/768px-Python-logo-notext.svg.png" alt="파이썬 로고" class="featured-image">
+                    </a>
+                    <div class="blog-post-content">
+                        <div class="post-meta">
+                            <span><time datetime="2023-11-05">2023년 11월 05일</time></span>
+                            <span>카테고리: <a href="python-basics-category.html">파이썬 기본 코딩</a></span>
+                            <span>작성자: 파이썬 강사</span>
+                        </div>
+                        <h2><a href="single-post-python-1.html">파이썬 시작하기: 변수와 자료형 완전 정복!</a></h2>
+                        <p class="post-excerpt">
+                            프로그래밍의 가장 기본 단위인 변수와 여러 종류의 자료형(숫자, 문자열, 리스트 등)에 대해 알아보고, 파이썬에서 어떻게 활용하는지 예제를 통해 쉽게 이해해 봅시다.
+                            <pre><code>name = "코딩도장"
+age = 10
+print(f"{name}은 {age}살 입니다!")</code></pre>
+                        </p>
+                        <a href="single-post-python-1.html" class="read-more-btn">자세히 배우기 →</a>
+                    </div>
+                </article>
+
+                <article class="blog-post-card" data-aos="fade-up">
+                    <a href="single-post-python-2.html">
+                        <img src="https://via.placeholder.com/800x300.png?text=Python+Control+Flow" alt="파이썬 제어문" class="featured-image" style="object-fit: cover;">
+                    </a>
+                    <div class="blog-post-content">
+                        <div class="post-meta">
+                            <span><time datetime="2023-11-02">2023년 11월 02일</time></span>
+                            <span>카테고리: <a href="python-basics-category.html">파이썬 기본 코딩</a></span>
+                            <span>작성자: 파이썬 강사</span>
+                        </div>
+                        <h2><a href="single-post-python-2.html">흐름을 제어하라! 파이썬 조건문(if)과 반복문(for, while)</a></h2>
+                        <p class="post-excerpt">
+                            프로그램의 실행 흐름을 원하는 대로 바꿀 수 있는 조건문과 반복문은 매우 중요합니다. 다양한 예시를 통해 파이썬의 if, for, while 문법을 마스터해 보세요.
+                        </p>
+                        <a href="single-post-python-2.html" class="read-more-btn">자세히 배우기 →</a>
+                    </div>
+                </article>
+
+                <article class="blog-post-card" data-aos="fade-up">
+                     <a href="single-post-python-3.html">
+                        <img src="https://via.placeholder.com/800x300.png?text=Python+Functions" alt="파이썬 함수" class="featured-image" style="object-fit: cover;">
+                    </a>
+                    <div class="blog-post-content">
+                        <div class="post-meta">
+                            <span><time datetime="2023-10-30">2023년 10월 30일</time></span>
+                            <span>카테고리: <a href="python-basics-category.html">파이썬 기본 코딩</a></span>
+                            <span>작성자: 파이썬 강사</span>
+                        </div>
+                        <h2><a href="single-post-python-3.html">코드를 재사용하는 마법, 파이썬 함수(Function) 만들기</a></h2>
+                        <p class="post-excerpt">
+                            반복되는 코드를 묶어 재사용할 수 있게 해주는 함수! 함수를 정의하고 호출하는 방법, 매개변수와 반환값의 개념을 확실하게 이해하고 코드를 더욱 효율적으로 만들어 봅시다.
+                            <pre><code>def greet(name):
+    return f"안녕하세요, {name}님!"
+
+message = greet("홍길동")
+print(message)</code></pre>
+                        </p>
+                        <a href="single-post-python-3.html" class="read-more-btn">자세히 배우기 →</a>
+                    </div>
+                </article>
+
+                <article class="blog-post-card" data-aos="fade-up">
+                     <a href="single-post-python-4.html">
+                        <img src="https://via.placeholder.com/800x300.png?text=Python+Modules" alt="파이썬 모듈" class="featured-image" style="object-fit: cover;">
+                    </a>
+                    <div class="blog-post-content">
+                        <div class="post-meta">
+                            <span><time datetime="2023-10-27">2023년 10월 27일</time></span>
+                            <span>카테고리: <a href="python-basics-category.html">파이썬 기본 코딩</a></span>
+                            <span>작성자: 파이썬 강사</span>
+                        </div>
+                        <h2><a href="single-post-python-4.html">파이썬 날개 달기: 유용한 모듈 활용법 (random, math, datetime)</a></h2>
+                        <p class="post-excerpt">
+                            파이썬에는 이미 만들어진 강력한 기능들이 모듈 형태로 제공됩니다. 자주 사용되는 random, math, datetime 모듈을 활용하여 더욱 풍부한 프로그램을 만들어 보세요.
+                        </p>
+                        <a href="single-post-python-4.html" class="read-more-btn">자세히 배우기 →</a>
+                    </div>
+                </article>
+
+
+                <!-- 페이지네이션 (파이썬 게시물이 많을 경우) -->
+                <!--
+                <nav class="pagination" aria-label="게시물 페이지네이션" style="text-align:center; margin-top:40px;">
+                    ...
+                </nav>
+                -->
+            </main>
+
+            <aside class="blog-sidebar" data-aos="fade-left">
+                <div class="sidebar-widget" style="background-color: rgba(0, 255, 255, 0.1); padding:20px; border-radius:5px; text-align:center;">
+                    <h4 style="color:#00FFFF; border-bottom:none;">코딩 상담 신청</h4>
+                    <p style="font-size:0.9em; color:#eee; margin-bottom:15px;">코딩 학습에 대해 궁금한 점이 있다면 지금 바로 문의하세요!</p>
+                    <a href="submit.html" class="read-more-btn" style="background-color:#00FFFF; color:#1e1e1e; display:block;">상담 바로가기</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 80px; padding: 30px 15px; border-top: 1px solid #333; font-size: 0.9em; color: #ccc; background-color: #181818;">
+        Copyright © <span id="currentYear"></span> 코딩도장 coding dojang. All Rights Reserved. <br>
+        서울 구로구 중앙로3길 12 서봉빌딩 405호 | 사업자등록번호: 000-00-00000 <br>
+        <a href="#terms" style="color: #00FFFF; text-decoration:none;">이용약관</a> |
+        <a href="#privacy" style="color: #00FFFF; text-decoration:none;">개인정보처리방침</a> |
+        <a href="index.html#contact" style="color: #00FFFF; text-decoration:none;">문의하기</a>
+    </footer>
+
+    <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
+    <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <!-- 코드 하이라이팅을 위한 PrismJS 또는 highlight.js JS (선택 사항) -->
+    <!-- <script src="path/to/prism.js"></script> -->
+    <script>
+        AOS.init({
+            offset: 100,
+            duration: 600,
+            once: true
+        });
+
+        window.addEventListener('scroll',function(){
+            const header = document.querySelector('nav');
+            header.classList.toggle("sticky",window.scrollY > 0);
+        })
+        function toggleMenu(){
+            const menuToggle = document.querySelector('.menuToggle');
+            const navigation = document.querySelector('.navigation');
+            menuToggle.classList.toggle('active')
+            navigation.classList.toggle('active')
+        }
+
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        const navLinks = document.querySelectorAll('.navigation li a');
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === "blog.html" && (window.location.pathname.includes('blog.html') || window.location.pathname.includes('-category.html'))) {
+                link.style.color = '#37ffff';
+                link.style.fontWeight = 'bold';
+            } else if (link.href === window.location.href) {
+                 link.style.color = '#37ffff';
+                 link.style.fontWeight = 'bold';
+            }
+        });
+
+        // (선택 사항) Prism.js 또는 highlight.js 초기화 (만약 사용한다면)
+        // 예: Prism.highlightAll();
+        // 예: document.addEventListener('DOMContentLoaded', (event) => {
+        //         document.querySelectorAll('pre code').forEach((block) => {
+        //             hljs.highlightBlock(block);
+        //         });
+        //     });
+    </script>
+</body>
+</html>

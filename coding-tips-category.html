@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유용한 코딩 학습 팁 - 코딩도장 블로그</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- <link rel="stylesheet" href="css/blog.css"> --> <!-- blog.html과 동일한 CSS 사용 -->
+
+    <style>
+        /* news-category.html 또는 blog.html과 동일한 스타일을 사용한다고 가정 */
+        /* 필요한 경우 이 페이지 전용 스타일을 여기에 추가 */
+
+        .blog-page-container {
+            padding-top: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .blog-main-content {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .blog-posts-area {
+            flex: 3;
+        }
+        .blog-sidebar {
+            flex: 1;
+            background-color: rgba(43, 39, 39, 0.8);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            height: fit-content;
+            color: #fff;
+        }
+
+        .blog-posts-area > h1.category-title {
+            font-size: 2.5em;
+            color: #fff;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .blog-posts-area > p.category-description {
+            text-align: center;
+            color: #ccc;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        .breadcrumb {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .breadcrumb a {
+            color: #00FFFF;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* 코딩 팁 게시물 카드 스타일 (기존 blog-post-card 재활용) */
+        .blog-post-card {
+            background-color: #2b2727;
+            border: 1px solid #444;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease-in-out;
+            color: #fff;
+        }
+        .blog-post-card:hover {
+            transform: translateY(-5px);
+        }
+        .blog-post-card img.featured-image { /* 팁 게시물은 이미지가 작거나 없을 수도 있음 */
+            width: 100%;
+            height: 200px; /* 또는 auto, 혹은 이미지 없는 디자인도 고려 */
+            object-fit: cover;
+        }
+        .blog-post-card .no-image { /* 이미지가 없는 경우 */
+            background-color: #3a3a3a;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-style: italic;
+        }
+        .blog-post-content { padding: 25px; }
+        .blog-post-content h2 { margin-top: 0; margin-bottom: 10px; }
+        .blog-post-content h2 a {
+            color: #37ffff;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+        .blog-post-content h2 a:hover { color: #00e0e0; }
+        .post-meta { font-size: 0.85em; color: #bbb; margin-bottom: 15px; }
+        .post-meta span { margin-right: 15px; }
+        .post-meta a { color: #00FFFF; text-decoration: none; }
+        .post-meta a:hover { text-decoration: underline; }
+        .post-excerpt { margin-bottom: 20px; line-height: 1.7; font-size: 1em; color: #e0e0e0;}
+        .read-more-btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background-color: #00FFFF;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+        .read-more-btn:hover { background-color: #00e0e0; }
+
+
+        /* 사이드바 스타일 (news-category.html과 동일) */
+        .sidebar-widget { margin-bottom: 30px; }
+        .sidebar-widget h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            color: #37ffff;
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+        }
+        .sidebar-widget ul { list-style: none; padding: 0; }
+        .sidebar-widget ul li { margin-bottom: 10px; }
+        .sidebar-widget ul li a { text-decoration: none; color: #00FFFF; }
+        .sidebar-widget ul li a.active-category {
+            font-weight: bold;
+            color: #37ffff;
+        }
+        .sidebar-widget ul li a:hover { text-decoration: underline; color: #37ffff; }
+        .sidebar-widget input[type="search"] {
+            width: calc(100% - 80px);
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 4px 0 0 4px;
+            background-color: #333;
+            color: #fff;
+        }
+        .sidebar-widget button[type="submit"] {
+            padding: 10px 15px;
+            border: 1px solid #00FFFF;
+            background-color: #00FFFF;
+            color: #1e1e1e;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            margin-left: -5px;
+        }
+        .sidebar-widget button[type="submit"]:hover {
+            background-color: #00e0e0;
+        }
+
+        /* 반응형 (news-category.html과 동일) */
+        @media (max-width: 991px) {
+            .blog-main-content { flex-direction: column; }
+            .blog-sidebar { margin-top: 30px; }
+        }
+        @media (max-width: 768px) {
+            .blog-post-card img.featured-image { height: 180px; }
+            .blog-post-content h2 a { font-size: 1.3em; }
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background-color: #00FFFF;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+        .read-more-btn:hover { background-color: #00e0e0; }
+    </style>
+</head>
+<body style="background-color: #1e1e1e;">
+
+    <nav>
+        <a href="index.html" class="logo">
+            <box-icon name='game' type='solid' color='#00FFFF' ></box-icon>코딩도장<span>coding dojang</span>
+        </a>
+        <div class="menuToggle" onclick="toggleMenu()">
+        </div>
+        <ul class="navigation">
+            <li><a href="index.html#banner" onclick="toggleMenu()">홈</a></li>
+            <li><a href="index.html#philosophy" onclick="toggleMenu()">소개</a></li>
+            <li><a href="index.html#games" onclick="toggleMenu()">결과물</a></li>
+            <li><a href="index.html#education" onclick="toggleMenu()">배움</a></li>
+            <li><a href="index.html#moreinfo" onclick="toggleMenu()">가치</a></li>
+            <li><a href="blog.html" onclick="toggleMenu()" class="active-nav-link">블로그</a></li>
+            <li><a href="index.html#contact" onclick="toggleMenu()">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="blog-page-container">
+
+        <div class="blog-main-content">
+
+            <main class="blog-posts-area">
+                <div class="breadcrumb" data-aos="fade-down">
+                    <a href="blog.html">블로그 홈</a> > <span>유용한 코딩 학습 팁</span>
+                </div>
+                <h1 class="category-title" data-aos="fade-down">유용한 코딩 학습 팁</h1>
+                <p class="category-description" data-aos="fade-down" data-aos-delay="100">
+                    코딩 실력 향상을 위한 꿀팁! 코딩도장 전문가들이 전하는 효과적인 학습 전략과 유용한 정보들을 만나보세요.
+                </p>
+
+                <!-- "유용한 코딩 학습 팁" 게시물 목록 -->
+                <article class="blog-post-card" data-aos="fade-up">
+                    <a href="single-post-tip-1.html"> <!-- 팁 상세 페이지 링크 -->
+                        <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="코딩 공부하는 모습" class="featured-image">
+                    </a>
+                    <div class="blog-post-content">
+                        <div class="post-meta">
+                            <span><time datetime="2023-11-03">2023년 11월 03일</time></span>
+                            <span>카테고리: <a href="coding-tips-category.html">유용한 코딩 학습 팁</a></span>
+                            <span>작성자: 코딩 전문가</span>
+                        </div>
+                        <h2><a href="single-post-tip-1.html">코딩 초보자가 매일 실천해야 할 5가지 습관</a></h2>
+                        <p class="post-excerpt">
+                            코딩 실력은 꾸준한 노력으로 만들어집니다. 매일 조금씩이라도 코딩과 친해지는 5가지 습관을 통해 코딩 마스터로 성장해보세요!
+                        </p>
+                        <a href="single-post-tip-1.html" class="read-more-btn">팁 자세히 보기 →</a>
+                    </div>
+                </article>
+
+                <article class="blog-post-card" data-aos="fade-up">
+                    <!-- 이미지가 없는 팁 게시물 예시 -->
+                    <div class="no-image" aria-label="게시물 대표 이미지 없음">
+                        <span>💡</span> <!-- 아이콘 등으로 대체 가능 -->
+                    </div>
+                    <div class="blog-post-content">
+                        <div class="post-meta">
+                            <span><time datetime="2023-10-31">2023년 10월 31일</time></span>
+                            <span>카테고리: <a href="coding-tips-category.html">유용한 코딩 학습 팁</a></span>
+                            <span>작성자: 선배 개발자</span>
+                        </div>
+                        <h2><a href="single-post-tip-2.html">효율적인 디버깅 방법: 버그 잡는 시간 절반으로 줄이기</a></h2>
+                        <p class="post-excerpt">
+                            개발자에게 버그는 피할 수 없는 존재입니다. 하지만 효율적인 디버깅 전략을 안다면 문제 해결 시간을 크게 단축할 수 있습니다. 실전 디버깅 노하우를 공개합니다.
+                        </p>
+                        <a href="single-post-tip-2.html" class="read-more-btn">팁 자세히 보기 →</a>
+                    </div>
+                </article>
+
+                <article class="blog-post-card" data-aos="fade-up">
+                    <a href="single-post-tip-3.html">
+                        <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="온라인 강의 듣는 모습" class="featured-image">
+                    </a>
+                    <div class="blog-post-content">
+                        <div class="post-meta">
+                            <span><time datetime="2023-10-28">2023년 10월 28일</time></span>
+                            <span>카테고리: <a href="coding-tips-category.html">유용한 코딩 학습 팁</a></span>
+                            <span>작성자: 교육 컨설턴트</span>
+                        </div>
+                        <h2><a href="single-post-tip-3.html">나에게 맞는 코딩 학습 자료 찾는 법 (온라인 강의, 책, 스터디)</a></h2>
+                        <p class="post-excerpt">
+                            수많은 코딩 학습 자료 속에서 어떤 것을 선택해야 할까요? 자신에게 맞는 학습 자료를 선택하고 효과적으로 활용하는 방법을 알려드립니다.
+                        </p>
+                        <a href="single-post-tip-3.html" class="read-more-btn">팁 자세히 보기 →</a>
+                    </div>
+                </article>
+
+                <article class="blog-post-card" data-aos="fade-up">
+                    <a href="single-post-tip-4.html">
+                        <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="깃허브 로고" class="featured-image">
+                    </a>
+                    <div class="blog-post-content">
+                        <div class="post-meta">
+                            <span><time datetime="2023-10-25">2023년 10월 25일</time></span>
+                            <span>카테고리: <a href="coding-tips-category.html">유용한 코딩 학습 팁</a></span>
+                            <span>작성자: 개발팀 리더</span>
+                        </div>
+                        <h2><a href="single-post-tip-4.html">개발자 필수 스킬! Git & GitHub 기초부터 활용까지</a></h2>
+                        <p class="post-excerpt">
+                            이제는 선택이 아닌 필수! 버전 관리 시스템 Git과 협업 플랫폼 GitHub의 기초 개념부터 실무에서 유용하게 쓰이는 팁까지 한 번에 정리해 드립니다.
+                        </p>
+                        <a href="single-post-tip-4.html" class="read-more-btn">팁 자세히 보기 →</a>
+                    </div>
+                </article>
+
+                <!-- 페이지네이션 (팁 게시물이 많을 경우) -->
+                <!--
+                <nav class="pagination" aria-label="게시물 페이지네이션" style="text-align:center; margin-top:40px;">
+                    ...
+                </nav>
+                -->
+            </main>
+
+            <aside class="blog-sidebar" data-aos="fade-left">
+                <div class="sidebar-widget" style="background-color: rgba(0, 255, 255, 0.1); padding:20px; border-radius:5px; text-align:center;">
+                    <h4 style="color:#00FFFF; border-bottom:none;">코딩 상담 신청</h4>
+                    <p style="font-size:0.9em; color:#eee; margin-bottom:15px;">코딩 학습에 대해 궁금한 점이 있다면 지금 바로 문의하세요!</p>
+                    <a href="submit.html" class="read-more-btn" style="background-color:#00FFFF; color:#1e1e1e; display:block;">상담 바로가기</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 80px; padding: 30px 15px; border-top: 1px solid #333; font-size: 0.9em; color: #ccc; background-color: #181818;">
+        Copyright © <span id="currentYear"></span> 코딩도장 coding dojang. All Rights Reserved. <br>
+        서울 구로구 중앙로3길 12 서봉빌딩 405호 | 사업자등록번호: 000-00-00000 <br>
+        <a href="#terms" style="color: #00FFFF; text-decoration:none;">이용약관</a> |
+        <a href="#privacy" style="color: #00FFFF; text-decoration:none;">개인정보처리방침</a> |
+        <a href="index.html#contact" style="color: #00FFFF; text-decoration:none;">문의하기</a>
+    </footer>
+
+    <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
+    <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 100, // 팁 카드는 텍스트 위주일 수 있으므로 offset 조정
+            duration: 600,
+            once: true
+        });
+
+        window.addEventListener('scroll',function(){
+            const header = document.querySelector('nav');
+            header.classList.toggle("sticky",window.scrollY > 0);
+        })
+        function toggleMenu(){
+            const menuToggle = document.querySelector('.menuToggle');
+            const navigation = document.querySelector('.navigation');
+            menuToggle.classList.toggle('active')
+            navigation.classList.toggle('active')
+        }
+
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        const navLinks = document.querySelectorAll('.navigation li a');
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === "blog.html" && (window.location.pathname.includes('blog.html') || window.location.pathname.includes('-category.html'))) {
+                link.style.color = '#37ffff';
+                link.style.fontWeight = 'bold';
+            } else if (link.href === window.location.href) {
+                 link.style.color = '#37ffff';
+                 link.style.fontWeight = 'bold';
+            }
+        });
+    </script>
+</body>
+</html>

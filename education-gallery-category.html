@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코딩 교육 현장 스케치 - 코딩도장 블로그</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- <link rel="stylesheet" href="css/blog.css"> --> <!-- blog.html과 동일한 CSS 사용 -->
+
+    <style>
+        /* news-category.html 또는 blog.html과 동일한 스타일을 사용한다고 가정 */
+        /* 필요한 경우 이 페이지 전용 스타일을 여기에 추가 */
+
+        .blog-page-container {
+            padding-top: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .blog-main-content {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .blog-posts-area {
+            flex: 3;
+        }
+        .blog-sidebar {
+            flex: 1;
+            background-color: rgba(43, 39, 39, 0.8);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            height: fit-content;
+            color: #fff;
+        }
+
+        .blog-posts-area > h1.category-title {
+            font-size: 2.5em;
+            color: #fff;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .blog-posts-area > p.category-description {
+            text-align: center;
+            color: #ccc;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        .breadcrumb {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .breadcrumb a {
+            color: #00FFFF;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* 교육 현장 갤러리용 카드 스타일 (기존 blog-post-card 활용 또는 변형) */
+        .gallery-card { /* .blog-post-card 와 유사하게 */
+            background-color: #2b2727;
+            border: 1px solid #444;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease-in-out;
+            color: #fff;
+        }
+        .gallery-card:hover {
+            transform: translateY(-5px);
+        }
+        .gallery-card img.featured-image {
+            width: 100%;
+            height: 250px; /* 갤러리이므로 이미지 높이를 조금 더 줄 수 있음 */
+            object-fit: cover;
+            cursor: pointer; /* 클릭 유도 (예: 라이트박스) */
+        }
+        .gallery-card .card-content { padding: 20px; }
+        .gallery-card .card-content h3 { margin-top: 0; margin-bottom: 10px; }
+        .gallery-card .card-content h3 a { /* 이미지 클릭 외 텍스트 링크도 필요하면 */
+            color: #37ffff;
+            text-decoration: none;
+            font-size: 1.3em;
+        }
+        .gallery-card .card-content h3 a:hover { color: #00e0e0; }
+        .gallery-card .card-meta { font-size: 0.85em; color: #bbb; margin-bottom: 10px; }
+        .gallery-card .card-description { font-size: 0.95em; color: #e0e0e0; line-height: 1.6; }
+        .gallery-card .view-details-btn { /* '자세히 보기' 대신 '사진 더보기' 등 */
+             display: inline-block;
+             padding: 8px 15px;
+             background-color: #00FFFF;
+             color: #1e1e1e;
+             text-decoration: none;
+             border-radius: 5px;
+             font-weight: 500;
+             font-size: 0.9em;
+             margin-top: 10px;
+        }
+        .gallery-card .view-details-btn:hover { background-color: #00e0e0; }
+
+        .read-more-btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background-color: #00FFFF;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+        .read-more-btn:hover { background-color: #00e0e0; }
+
+        /* 사이드바 스타일 (news-category.html과 동일) */
+        .sidebar-widget { margin-bottom: 30px; }
+        .sidebar-widget h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            color: #37ffff;
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+        }
+        .sidebar-widget ul { list-style: none; padding: 0; }
+        .sidebar-widget ul li { margin-bottom: 10px; }
+        .sidebar-widget ul li a { text-decoration: none; color: #00FFFF; }
+        .sidebar-widget ul li a.active-category {
+            font-weight: bold;
+            color: #37ffff;
+        }
+        .sidebar-widget ul li a:hover { text-decoration: underline; color: #37ffff; }
+        .sidebar-widget input[type="search"] {
+            width: calc(100% - 80px);
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 4px 0 0 4px;
+            background-color: #333;
+            color: #fff;
+        }
+        .sidebar-widget button[type="submit"] {
+            padding: 10px 15px;
+            border: 1px solid #00FFFF;
+            background-color: #00FFFF;
+            color: #1e1e1e;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            margin-left: -5px;
+        }
+        .sidebar-widget button[type="submit"]:hover {
+            background-color: #00e0e0;
+        }
+
+
+        /* 반응형 (news-category.html과 동일) */
+        @media (max-width: 991px) {
+            .blog-main-content { flex-direction: column; }
+            .blog-sidebar { margin-top: 30px; }
+        }
+        @media (max-width: 768px) {
+            .gallery-card img.featured-image { height: 200px; }
+            .gallery-card .card-content h3 a { font-size: 1.2em; }
+        }
+
+        /* 만약 이미지 갤러리 그리드 레이아웃을 원한다면 추가 스타일 필요 */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 반응형 그리드 */
+            gap: 20px;
+        }
+    </style>
+</head>
+<body style="background-color: #1e1e1e;">
+
+    <nav>
+        <a href="index.html" class="logo">
+            <box-icon name='game' type='solid' color='#00FFFF' ></box-icon>코딩도장<span>coding dojang</span>
+        </a>
+        <div class="menuToggle" onclick="toggleMenu()">
+        </div>
+        <ul class="navigation">
+            <li><a href="index.html#banner" onclick="toggleMenu()">홈</a></li>
+            <li><a href="index.html#philosophy" onclick="toggleMenu()">소개</a></li>
+            <li><a href="index.html#games" onclick="toggleMenu()">결과물</a></li>
+            <li><a href="index.html#education" onclick="toggleMenu()">배움</a></li>
+            <li><a href="index.html#moreinfo" onclick="toggleMenu()">가치</a></li>
+            <li><a href="blog.html" onclick="toggleMenu()" class="active-nav-link">블로그</a></li>
+            <li><a href="index.html#contact" onclick="toggleMenu()">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="blog-page-container">
+
+        <div class="blog-main-content">
+
+            <main class="blog-posts-area">
+                <div class="breadcrumb" data-aos="fade-down">
+                    <a href="blog.html">블로그 홈</a> > <span>코딩 교육 현장 스케치</span>
+                </div>
+                <h1 class="category-title" data-aos="fade-down">코딩 교육 현장 스케치</h1>
+                <p class="category-description" data-aos="fade-down" data-aos-delay="100">
+                    코딩도장의 열정 가득한 수업 현장! 학생들의 빛나는 아이디어와 성장 과정을 생생하게 만나보세요.
+                </p>
+
+                <!-- "코딩 교육 현장 스케치" 게시물 목록 -->
+                <div class="gallery-grid"> <!-- 기존 그리드 유지 -->
+
+                    <!-- 수정된 3D 프린팅 실습 포스팅 카드 -->
+                    <article class="gallery-card" data-aos="fade-up" data-aos-delay="100">
+                        <a href="gallery-post-3d-printing.html" style="text-decoration: none; display: block; color: inherit;"> <!-- 카드 전체를 링크로 감싸기 -->
+                            <!-- 대표 이미지는 모델링 전체 모습 또는 완성품으로 -->
+                            <img src="media/gallary/3dPrinting.jpg" alt="3D 프린팅 아두이노 케이스 제작 실습" class="featured-image">
+                            <div class="card-content">
+                                <div class="card-meta">
+                                    <span><time datetime="2023-11-08">2024년 06월 17일</time></span>
+                                    <span>주제: 3D 프린팅 & 메이커 교육</span>
+                                </div>
+                                <h3>나만의 아두이노 케이스 만들기! 3D 프린팅 실습 현장</h3>
+                                <p class="card-description">
+                                    학생들이 직접 3D 모델링 툴을 다루며 아두이노 케이스를 디자인하고, 3D 프린터를 활용해 아이디어를 현실로 만들어보는 창의적인 메이커 활동! 그 생생한 과정을 만나보세요.
+                                </p>
+                                <span class="view-details-btn" style="display: inline-block; margin-top: 10px;">실습 과정 더보기 →</span> <!-- 버튼 모양만 유지, 실제 링크는 상위 a 태그가 담당 -->
+                            </div>
+                        </a>
+                    </article>
+                    <!-- /수정된 3D 프린팅 실습 포스팅 카드 끝 -->
+
+
+                    <!-- 스크래치 코딩 게시물 카드 (내용 수정) -->
+                    <article class="gallery-card" data-aos="fade-up" data-aos-delay="50">
+                        <a href="gallery-post-scratch-grading.html" style="text-decoration: none; display: block; color: inherit;"> <!-- 링크 파일명 변경 -->
+                            <!-- 대표 이미지로 스크래치 학점 프로그램 실행 모습 GIF -->
+                            <img src="media/gallary/scratch.gif" alt="스크래치 학점 계산 프로그램 GIF" class="featured-image">
+                            <div class="card-content">
+                                <div class="card-meta">
+                                    <span><time datetime="2024-04-10">2023년 11월 10일</time></span>
+                                    <span>주제: 스크래치 조건문 활용</span>
+                                </div>
+                                <h3>스크래치로 만드는 학점 알려주는 부엉이!</h3>
+                                <p class="card-description">
+                                    햄스터가 간달프 교수님께 점수를 말하면, 마법의 부엉이가 학점을 알려줘요! 스크래치 조건문을 활용한 재미있는 프로그램을 함께 만들어 본 수업입니다.
+                                </p>
+                                <span class="view-details-btn" style="display: inline-block; margin-top: 10px;">프로젝트 보기 →</span>
+                            </div>
+                        </a>
+                    </article>
+                    <!-- /스크래치 코딩 게시물 카드 끝 -->
+
+                    <article class="gallery-card" data-aos="fade-up" data-aos-delay="100">
+                         <a href="gallery-post-2.html" style="text-decoration: none; display: block; color: inherit;">
+                            <img src="https://images.unsplash.com/photo-1580894732444-8ec16395735c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="중학생 파이썬 프로젝트 발표" class="featured-image">
+                            <div class="card-content">
+                                <div class="card-meta">
+                                    <span><time datetime="2023-10-29">2023년 10월 29일</time></span>
+                                    <span>주제: 파이썬 프로젝트</span>
+                                </div>
+                                <h3>나만의 프로그램 만들기! 파이썬 프로젝트 발표회</h3>
+                                <p class="card-description">
+                                    중학생반 학생들이 몇 주간 준비한 파이썬 프로젝트를 멋지게 발표하는 시간! 창의적인 아이디어들이 돋보였습니다.
+                                </p>
+                                <span class="view-details-btn" style="display: inline-block; margin-top: 10px;">자세히 보기 →</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <article class="gallery-card" data-aos="fade-up" data-aos-delay="200">
+                        <a href="gallery-post-3.html" style="text-decoration: none; display: block; color: inherit;">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="팀 프로젝트 협업 모습" class="featured-image">
+                            <div class="card-content">
+                                <div class="card-meta">
+                                    <span><time datetime="2023-10-26">2023년 10월 26일</time></span>
+                                    <span>주제: 유니티 게임 개발 캠프</span>
+                                </div>
+                                <h3>함께 만드는 즐거움! 유니티 게임 개발 캠프 현장</h3>
+                                <p class="card-description">
+                                    여름방학 특강으로 진행된 유니티 게임 개발 캠프! 팀원들과 협력하여 멋진 게임을 완성해가는 모습입니다.
+                                </p>
+                                 <span class="view-details-btn" style="display: inline-block; margin-top: 10px;">자세히 보기 →</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <article class="gallery-card" data-aos="fade-up">
+                        <a href="gallery-post-4.html" style="text-decoration: none; display: block; color: inherit;">
+                            <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="코딩 특강 강연 모습" class="featured-image">
+                            <div class="card-content">
+                                <div class="card-meta">
+                                    <span><time datetime="2023-10-20">2023년 10월 20일</time></span>
+                                    <span>주제: 학부모 대상 코딩 특강</span>
+                                </div>
+                                <h3>미래를 위한 코딩 교육, 학부모 특강 스케치</h3>
+                                <p class="card-description">
+                                    자녀 코딩 교육에 대한 궁금증을 해소하고 미래 교육의 방향을 함께 고민했던 학부모님 대상 특강 현장입니다.
+                                </p>
+                                <span class="view-details-btn" style="display: inline-block; margin-top: 10px;">자세히 보기 →</span>
+                            </div>
+                        </a>
+                    </article>
+                </div> <!-- .gallery-grid 끝 -->
+
+                <!-- 페이지네이션 (갤러리 아이템이 많을 경우) -->
+                <!--
+                <nav class="pagination" aria-label="게시물 페이지네이션" style="text-align:center; margin-top:40px;">
+                    ...
+                </nav>
+                -->
+            </main>
+            <!-- ... (사이드바는 이전과 동일하게 유지) ... -->
+
+            <aside class="blog-sidebar" data-aos="fade-left">
+                <div class="sidebar-widget" style="background-color: rgba(0, 255, 255, 0.1); padding:20px; border-radius:5px; text-align:center;">
+                    <h4 style="color:#00FFFF; border-bottom:none;">코딩 상담 신청</h4>
+                    <p style="font-size:0.9em; color:#eee; margin-bottom:15px;">코딩 학습에 대해 궁금한 점이 있다면 지금 바로 문의하세요!</p>
+                    <a href="submit.html" class="read-more-btn" style="background-color:#00FFFF; color:#1e1e1e; display:block;">상담 바로가기</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 80px; padding: 30px 15px; border-top: 1px solid #333; font-size: 0.9em; color: #ccc; background-color: #181818;">
+        Copyright © <span id="currentYear"></span> 코딩도장 coding dojang. All Rights Reserved. <br>
+        서울 구로구 중앙로3길 12 서봉빌딩 405호 | 사업자등록번호: 000-00-00000 <br>
+        <a href="#terms" style="color: #00FFFF; text-decoration:none;">이용약관</a> |
+        <a href="#privacy" style="color: #00FFFF; text-decoration:none;">개인정보처리방침</a> |
+        <a href="index.html#contact" style="color: #00FFFF; text-decoration:none;">문의하기</a>
+    </footer>
+
+    <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
+    <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 120, // 이미지 카드가 많을 수 있으므로 offset 조정
+            duration: 700,
+            once: true
+        });
+
+        window.addEventListener('scroll',function(){
+            const header = document.querySelector('nav');
+            header.classList.toggle("sticky",window.scrollY > 0);
+        })
+        function toggleMenu(){
+            const menuToggle = document.querySelector('.menuToggle');
+            const navigation = document.querySelector('.navigation');
+            menuToggle.classList.toggle('active')
+            navigation.classList.toggle('active')
+        }
+
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        const navLinks = document.querySelectorAll('.navigation li a');
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === "blog.html" && (window.location.pathname.includes('blog.html') || window.location.pathname.includes('-category.html'))) {
+                link.style.color = '#37ffff';
+                link.style.fontWeight = 'bold';
+            } else if (link.href === window.location.href) {
+                 link.style.color = '#37ffff';
+                 link.style.fontWeight = 'bold';
+            }
+        });
+
+        // (선택 사항) 이미지 클릭 시 라이트박스 기능 추가 (예: Lightbox2, FancyBox 등 라이브러리 사용)
+        // 예시: const galleryImages = document.querySelectorAll('.gallery-card .featured-image');
+        // galleryImages.forEach(img => {
+        //     img.addEventListener('click', function() {
+        //         // 라이트박스 실행 로직
+        //         console.log('Image clicked:', this.src);
+        //     });
+        // });
+    </script>
+</body>
+</html>

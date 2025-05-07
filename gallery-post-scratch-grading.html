@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO - 기본 정보 -->
+    <title>스크래치로 만드는 학점 알려주는 부엉이! - 코딩도장 블로그</title>
+    <meta name="description" content="코딩도장의 스크래치 코딩 수업! 햄스터가 간달프 교수님께 점수를 입력하면 부엉이가 A, B 학점을 알려주는 재미있는 프로그램을 만들었어요. 조건문 활용법을 배워보세요.">
+    <meta name="keywords" content="스크래치, 코딩, 블록코딩, 조건문, 학점계산, 코딩교육, 코딩도장, Scratch, if문">
+    <link rel="canonical" href="https://codingdojang.kr/blog/gallery-post-scratch-grading.html"> <!-- 예: https://codingdojang.com/blog/gallery-post-scratch-grading.html -->
+
+    <!-- SEO - Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="스크래치로 만드는 학점 알려주는 부엉이! - 코딩도장 블로그">
+    <meta property="og:description" content="햄스터가 점수를 입력하면 부엉이가 학점을 알려주는 스크래치 프로그램! 코딩도장에서 조건문 활용법을 배워보세요.">
+    <meta property="og:image" content="https://codingdojang.kr/media/gallary/scratch.gif"> <!-- 예: https://codingdojang.com/media/gallary/scratch_grading_program.gif -->
+    <meta property="og:url" content="https://codingdojang.kr/blog/gallery-post-scratch-grading.html">
+    <meta property="og:site_name" content="코딩도장 블로그">
+    <meta property="article:published_time" content="2023-11-10T11:00:00+09:00"> <!-- 시간 변경 -->
+    <meta property="article:author" content="코딩도장">
+    <meta property="article:tag" content="스크래치">
+    <meta property="article:tag" content="조건문">
+
+    <!-- SEO - Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="스크래치로 만드는 학점 알려주는 부엉이! - 코딩도장 블로그">
+    <meta name="twitter:description" content="햄스터가 점수를 입력하면 부엉이가 학점을 알려주는 스크래치 프로그램! 코딩도장에서 조건문 활용법을 배워보세요.">
+    <meta name="twitter:image" content="https://codingdojang.kr/blog/gallary/scratch.gif">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/post-detail.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- SEO - JSON-LD Structured Data (Article) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://codingdojang.kr/blog/gallery-post-scratch-grading.html"
+      },
+      "headline": "스크래치로 만드는 학점 알려주는 부엉이!",
+      "description": "코딩도장의 스크래치 코딩 수업! 햄스터가 간달프 교수님께 점수를 입력하면 부엉이가 A, B 학점을 알려주는 재미있는 프로그램을 만들었어요. 조건문 활용법을 배워보세요.",
+      "image": "https://codingdojang.kr/media/gallary/scratch.gif",
+      "author": {
+        "@type": "Organization",
+        "name": "코딩도장",
+        "url": "https://codingdojang.kr"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "코딩도장",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "[코딩도장_로고_이미지_URL_입력]"
+        }
+      },
+      "datePublished": "2024-04-25T11:00:00+09:00",
+      "dateModified": "2024-04-25T11:00:00+09:00",
+      "keywords": "스크래치, 블록코딩, 조건문, 학점계산, if문"
+    }
+    </script>
+</head>
+<body style="background-color: #1e1e1e;">
+
+    <nav>
+        <!-- ... (기존 네비게이션 코드) ... -->
+        <a href="index.html" class="logo">
+            <box-icon name='game' type='solid' color='#00FFFF' ></box-icon>코딩도장<span>coding dojang</span>
+        </a>
+        <div class="menuToggle" onclick="toggleMenu()">
+        </div>
+        <ul class="navigation">
+            <li><a href="index.html#banner" onclick="toggleMenu()">홈</a></li>
+            <li><a href="index.html#philosophy" onclick="toggleMenu()">소개</a></li>
+            <li><a href="index.html#games" onclick="toggleMenu()">결과물</a></li>
+            <li><a href="index.html#education" onclick="toggleMenu()">배움</a></li>
+            <li><a href="index.html#moreinfo" onclick="toggleMenu()">가치</a></li>
+            <li><a href="blog.html" onclick="toggleMenu()">블로그</a></li>
+            <li><a href="index.html#contact" onclick="toggleMenu()">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="post-detail-container">
+        <article class="post-content-area" data-aos="fade-up" itemscope itemtype="https://schema.org/Article">
+            <header class="post-header">
+                <div class="breadcrumb">
+                    <a href="blog.html">블로그 홈</a> > <a href="education-gallery-category.html">코딩 교육 현장 스케치</a>
+                </div>
+                <h1 itemprop="headline">스크래치로 만드는 학점 알려주는 부엉이!</h1>
+                <div class="post-meta-info">
+                    <span><time datetime="2024-04-25" itemprop="datePublished">2024년 04월 25일</time></span>
+                    <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                        <span itemprop="name">코딩도장</span>
+                    </span>
+                    <span><a href="education-gallery-category.html" itemprop="articleSection">코딩 교육 현장 스케치</a></span>
+                </div>
+            </header>
+
+            <div class="post-body" itemprop="articleBody">
+                <p class="lead-paragraph">코딩도장의 스크래치반 친구들이 이번에는 아주 재미있는 상상을 현실로 만들었어요! 바로 햄스터가 간달프 교수님께 중간고사 점수를 여쭤보면, 지혜로운 부엉이가 날아와 학점을 알려주는 프로그램이랍니다. 이 프로그램을 통해 스크래치의 핵심 기능 중 하나인 '조건문'을 쉽고 재미있게 배울 수 있었습니다.</p>
+
+                <h2>완성된 프로그램 실행 모습 (GIF)</h2>
+                <figure class="featured-image-container" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                    <img src="media/gallary/scratch.gif" alt="스크래치 햄스터와 부엉이 학점 프로그램 실행 GIF" class="main-featured-image" itemprop="url contentUrl">
+                    <meta itemprop="width" content="600"> <!-- GIF 실제 너비 -->
+                    <meta itemprop="height" content="450"> <!-- GIF 실제 높이 -->
+                    <figcaption>햄스터가 "교수님, 제 점수는요?" 라고 묻자, 입력된 점수에 따라 부엉이가 학점을 알려줍니다!</figcaption>
+                </figure>
+
+                <h2>핵심 블록 코드 살펴보기: 조건에 따라 달라지는 부엉이의 대답!</h2>
+                <p>이 프로그램의 핵심은 바로 '만약 ~이라면, 아니면' 블록, 즉 조건문입니다. 입력된 점수에 따라 부엉이가 다른 말을 하도록 만드는 것이죠. 예를 들어 90점 이상이면 "A학점!", 80점 이상이면 "B학점!" 이라고 말하게 됩니다.</p>
+
+                <h3>1. 점수 입력받고 변수에 저장하기</h3>
+                <p>먼저, 햄스터가 간달프 교수님께 점수를 여쭤보고, 사용자가 점수를 입력하면 그 값을 '점수'라는 변수에 저장하는 부분입니다. '묻고 기다리기' 블록과 '대답' 블록을 활용합니다.</p>
+                <img src="media/gallary/scratch1.png" alt="스크래치 점수 입력 및 변수 저장 블록 코드" class="post-image">
+                <blockquote>
+                    <p>"내가 직접 점수를 입력하니까 진짜 햄스터가 된 것 같았어요! 변수에 숫자가 들어가는 게 신기해요." - 스크래치반 학생 C</p>
+                </blockquote>
+
+                <h3>2. 조건에 따라 학점 알려주기 (부엉이 코드)</h3>
+                <p>부엉이 스프라이트의 코드입니다. '점수' 변수의 값에 따라 다른 메시지를 말하도록 여러 개의 '만약 ~이라면, 아니면' 블록을 중첩하여 사용합니다. 여기서는 간단하게 A와 B학점만 구분했지만, 더 많은 조건을 추가하여 C, D, F 학점까지 알려주도록 확장할 수 있습니다.</p>
+                <img src="media/gallary/scratch2.png" alt="스크래치 조건문 활용 학점 알림 블록 코드 (부엉이)" class="post-image">
+                <p>예를 들어, 90점 이상이면 부엉이가 "훌륭하구나! A학점이다!" 라고 말하고, 80점 이상 90점 미만이면 "잘했네! B학점일세." 라고 말하도록 설정할 수 있습니다. 그 외의 점수에는 "더 노력해야겠군!" 과 같은 메시지를 추가할 수도 있겠죠?</p>
+
+                <h3>3. 캐릭터 간의 상호작용 (방송하기/방송받았을 때)</h3>
+                <p>햄스터가 점수를 입력한 후, 부엉이가 나타나서 말을 하도록 하기 위해 '방송하기'와 '방송 받았을 때' 블록을 사용할 수 있습니다. 햄스터가 "점수입력완료" 방송을 보내면, 부엉이가 그 방송을 받고 나타나서 위에서 만든 조건문 코드를 실행하게 됩니다.</p>
+                <img src="media/gallary/scratch3.png" alt="스크래치 방송하기 및 방송받았을 때 블록 코드" class="post-image">
+
+                <p>이처럼 간단한 아이디어와 스크래치의 조건문, 변수, 방송 기능을 활용하면 상상하는 이야기를 얼마든지 프로그램으로 만들 수 있답니다! 코딩도장에서는 학생들이 이러한 과정을 통해 논리적인 사고력과 문제 해결 능력을 자연스럽게 키워나가고 있습니다.</p>
+
+                <div class="post-tags" itemprop="keywords">
+                    <span>태그:</span>
+                    <a href="#">스크래치</a>
+                    <a href="#">블록코딩</a>
+                    <a href="#">조건문</a>
+                    <a href="#">학점계산</a>
+                    <a href="#">코딩교육</a>
+                </div>
+            </div>
+
+            <footer class="post-footer">
+                <div class="share-buttons">
+                    <span>공유하기:</span>
+                    <a href="#" class="share-btn-facebook">Facebook</a>
+                    <a href="#" class="share-btn-twitter">Twitter</a>
+                    <a href="#" class="share-btn-link">링크복사</a>
+                </div>
+                <a href="education-gallery-category.html" class="back-to-list-btn">← 목록으로 돌아가기</a>
+            </footer>
+        </article>
+    </div>
+
+    <footer style="text-align: center; margin-top: 80px; padding: 30px 15px; border-top: 1px solid #333; font-size: 0.9em; color: #ccc; background-color: #181818;">
+        <!-- ... (기존 푸터 코드) ... -->
+        Copyright © <span id="currentYear"></span> 코딩도장 coding dojang. All Rights Reserved. <br>
+        서울 구로구 중앙로3길 12 서봉빌딩 405호 | 사업자등록번호: 000-00-00000 <br>
+        <a href="#terms" style="color: #00FFFF; text-decoration:none;">이용약관</a> |
+        <a href="#privacy" style="color: #00FFFF; text-decoration:none;">개인정보처리방침</a> |
+        <a href="index.html#contact" style="color: #00FFFF; text-decoration:none;">문의하기</a>
+    </footer>
+
+    <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
+    <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 100,
+            duration: 700,
+            once: true
+        });
+
+        window.addEventListener('scroll',function(){
+            const header = document.querySelector('nav');
+            header.classList.toggle("sticky",window.scrollY > 0);
+        })
+        function toggleMenu(){
+            const menuToggle = document.querySelector('.menuToggle');
+            const navigation = document.querySelector('.navigation');
+            menuToggle.classList.toggle('active')
+            navigation.classList.toggle('active')
+        }
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
