@@ -194,7 +194,7 @@ body, html {
 
     .CodeMirror { /* 각 에디터 내부 (HTML, CSS, JS) */
         /* min-height: 100px; */ /* 이전 값 */
-        height: 120px; /* 중요: 고정된 픽셀 높이를 명시적으로 설정 (약 5-6줄 분량) */
+        height: 50px; /* 중요: 고정된 픽셀 높이를 명시적으로 설정 (약 5-6줄 분량) */
                        /* 이 값을 조절하여 원하는 줄 수를 맞추세요. */
         /* flex-grow: 1; */ /* 고정 높이를 주므로 flex-grow는 일단 제거 */
         /* CodeMirror는 내부적으로 overflow:auto를 가짐 */
@@ -213,7 +213,7 @@ body, html {
 
     .preview-pane { /* 실행 화면 */
         width: 100%;
-        min-height: 35vh; /* 최소 높이 유지 */
+        min-height: 50vh; /* 최소 높이 유지 */
         height: auto;
         border-top: 2px solid #ddd;
         order: 2;
@@ -221,7 +221,7 @@ body, html {
 
     #web-terminal-container { /* 아웃풋 */
         width: 100%;
-        min-height: 20vh; /* 최소 높이 유지 */
+        min-height: 30vh; /* 최소 높이 유지 */
         height: auto;
         margin-top: 0;
         border-top: 2px solid #4f5b66;
