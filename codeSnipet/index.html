@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코딩도장 온라인 코드 에디터</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/material.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/lint/lint.min.css">
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">
+            <box-icon name='game' type='solid' color='#00FFFF' ></box-icon>코딩도장<span>coding dojang</span>
+        </a>
+        <div class="menuToggle" onclick="toggleMenu()">
+        </div>
+        <ul class="navigation">
+            <li><a href="#banner" onclick="toggleMenu()">홈</a></li>
+            <li><a href="#philosophy" onclick="toggleMenu()">소개</a></li>
+            <li><a href="#games" onclick="toggleMenu()">결과물</a></li>
+            <li><a href="#education" onclick="toggleMenu()">배움</a></li>
+            <li><a href="#moreinfo" onclick="toggleMenu()">가치</a></li>
+            <li><a href="blog.html" onclick="toggleMenu()">블로그</a></li>
+            <li><a href="codeSnipet/index.html" onclick="toggleMenu()">코드연습</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+
+        </ul>
+    </nav>
+
+    <!-- 전체 컨테이너 (이제 수직으로 메인 콘텐츠와 터미널 등을 배치) -->
+    <div class="container" id="main-container">
+
+        <!-- 메인 콘텐츠 래퍼 (에디터 패널과 미리보기 패널을 수평 분할) -->
+        <div class="main-content-wrapper">
+            <!-- 에디터 패널 (HTML, CSS, JS 에디터를 수직 분할) -->
+            <div class="editor-pane" id="editor-area">
+                <div class="code-section" id="html-panel">
+                    <label for="html-code">HTML</label>
+                    <textarea id="html-code"></textarea>
+                </div>
+                <div class="code-section" id="css-panel">
+                    <label for="css-code">CSS</label>
+                    <textarea id="css-code"></textarea>
+                </div>
+                <div class="code-section" id="js-panel">
+                    <label for="js-code">JavaScript</label>
+                    <textarea id="js-code"></textarea>
+                </div>
+                <button id="run-button">실행</button>
+            </div>
+            <!-- 미리보기 패널 -->
+            <div class="preview-pane" id="preview-area">
+                <iframe id="preview-frame"></iframe>
+            </div>
+        </div>
+
+        <!-- 웹 터미널 UI (메인 콘텐츠 래퍼와 같은 레벨, 아래에 위치) -->
+        <div id="web-terminal-container">
+            <h2>Web Terminal Output</h2>
+            <div id="web-terminal">
+                <div class="terminal-output"></div>
+            </div>
+        </div>
+
+        <!-- 자동화 스크립트 뷰어 (터미널 아래 또는 원하는 위치) -->
+        <div class="automation-script-viewer" id="playwright-script-container" style="display: none;">
+            <h3 style="padding: 10px; background-color: #f0f0f0; margin: 0; border-bottom: 1px solid #ccc;">자동화 스크립트 (test.js)</h3>
+            <textarea id="playwright-code-display"></textarea>
+        </div>
+
+    </div>
+
+    <!-- CodeMirror JS (이전과 동일) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/edit/closetag.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/edit/closebrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/lint/lint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/lint/javascript-lint.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/lint/css-lint.js"></script>
+    <script src="https://unpkg.com/jshint@2.13.4/dist/jshint.js"></script>
+    <script src="https://unpkg.com/csslint@1.0.5/dist/csslint.js"></script>
+
+    <!-- Split.js -->
+    <script src="https://unpkg.com/split.js/dist/split.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>

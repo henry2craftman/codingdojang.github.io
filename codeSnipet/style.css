@@ -1,0 +1,201 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+    overflow: hidden; /* 전체 페이지 스크롤 방지 */
+}
+
+.container {
+    display: flex; /* 수평 분할을 위해 */
+    height: 100vh;
+    /* 웹 터미널이 추가되므로, container가 수직으로도 내용을 담을 수 있도록 변경 필요 */
+    flex-direction: column; /* 전체 레이아웃을 수직으로 변경 (상단: 에디터+미리보기, 하단: 터미널) */
+}
+
+/* 에디터와 미리보기를 묶는 새로운 래퍼 (수평 분할 유지) */
+.main-content-wrapper {
+    display: flex;
+    flex-grow: 1; /* 사용 가능한 수직 공간을 차지 */
+    /* height: 80vh; */ /* 예: 전체 높이의 80%를 에디터+미리보기에 할당 */
+    overflow: hidden; /* 내부 스플릿 영역이 넘치지 않도록 */
+}
+
+.editor-pane {
+    display: flex;
+    flex-direction: column;
+    background-color: #282c34;
+    color: #abb2bf;
+    overflow: hidden;
+    /* Split.js가 너비를 관리. main-content-wrapper 내에서. */
+}
+
+.preview-pane {
+    background-color: #fff;
+    overflow: hidden;
+    /* Split.js가 너비를 관리. main-content-wrapper 내에서. */
+}
+
+/* Split.js 구분선 스타일 */
+.gutter {
+    background-color: #4f5b66;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    z-index: 10;
+}
+
+.gutter.gutter-horizontal {
+    cursor: col-resize;
+    width: 10px;
+}
+
+.gutter.gutter-vertical {
+    cursor: row-resize;
+    height: 10px;
+}
+
+.code-section {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.code-section label {
+    padding: 6px 10px;
+    background-color: #3a3f4b;
+    font-weight: bold;
+    flex-shrink: 0;
+    font-size: 13px;
+    border-bottom: 1px solid #4f5b66;
+}
+
+.CodeMirror {
+    flex-grow: 1;
+    border: none;
+    min-height: 0;
+}
+
+#run-button {
+    padding: 10px 15px;
+    background-color: #61afef;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+#run-button:hover {
+    background-color: #528baf;
+}
+
+#preview-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
+/* --- 웹 터미널 스타일 수정 및 추가 --- */
+#web-terminal-container {
+    /* width: 100%; */ /* 이제 .container의 자식이므로, 너비는 100% 또는 부모에 맞춤 */
+    /* max-width는 필요 없음. flex-grow로 높이 조절 */
+    background-color: #1e1e1e;
+    color: #cccccc;
+    border-top: 2px solid #4f5b66; /* 상단 영역과의 구분선 */
+    padding: 10px;
+    box-sizing: border-box; /* 패딩이 너비/높이에 포함되도록 */
+    flex-shrink: 0; /* 크기가 줄어들지 않도록 고정 (높이 설정 시) */
+    /* height: 20vh; */ /* 예: 전체 높이의 20%를 터미널에 할당 */
+    height: 180px; /* 고정 높이로 설정 (예시) */
+    display: flex; /* 내부 h2와 #web-terminal을 수직 정렬하기 위해 */
+    flex-direction: column; /* 내부 요소 수직 정렬 */
+    overflow: hidden; /* 내부 #web-terminal이 넘치지 않도록 */
+}
+
+#web-terminal-container h2 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.0em; /* 기존 1.1em에서 약간 줄임 */
+    color: #00aaff;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #333;
+    flex-shrink: 0; /* 제목 높이 고정 */
+}
+
+#web-terminal {
+    /* height는 #web-terminal-container에서 관리, 여기서는 남은 공간 모두 차지 */
+    flex-grow: 1; /* #web-terminal-container 내에서 h2를 제외한 나머지 공간 차지 */
+    overflow-y: auto;
+    font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace;
+    font-size: 0.85em; /* 기존 0.9em에서 약간 줄임 */
+    line-height: 1.3;
+    background-color: #161616; /* 터미널 실제 출력 배경 (선택적) */
+    padding: 5px; /* 내부 여백 (선택적) */
+    border-radius: 3px; /* 내부 모서리 (선택적) */
+}
+
+.terminal-output p {
+    margin: 0 0 3px 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* .terminal-output .timestamp (스타일 변경 없음) */
+
+/* automation-script-viewer (스타일 변경 없음) */
+/* ... */
+
+
+/* 모바일 화면 (768px 이하) */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    /* 모바일에서는 main-content-wrapper가 editor-pane과 preview-pane을 수직으로 담도록 */
+    .main-content-wrapper {
+        flex-direction: column;
+        height: auto; /* 내용에 따라 높이 조절 */
+        flex-grow: 0; /* 모바일에서는 고정된 vh 비율을 사용하므로 grow 불필요 */
+    }
+
+    .editor-pane {
+        height: 50vh; /* 예: 화면 높이의 50% (터미널 공간 고려) */
+        /* order: 1; */
+    }
+
+    .preview-pane {
+        height: 30vh; /* 예: 화면 높이의 30% (터미널 공간 고려) */
+        border-top: 2px solid #ddd;
+        /* order: 2; */
+    }
+
+    .gutter {
+        display: none !important;
+    }
+
+    .code-section {
+         flex-grow: 1;
+    }
+    .CodeMirror {
+        min-height: 70px; /* 모바일에서 최소 높이 약간 줄임 */
+    }
+
+    /* 모바일에서 웹 터미널 */
+    #web-terminal-container {
+        height: 20vh; /* 예: 화면 높이의 20% */
+        /* order: 3; */ /* 필요시 순서 조정 */
+        margin-top: 0; /* 모바일에서는 위쪽 패널과 바로 붙도록 */
+        border-top: 2px solid #4f5b66; /* 구분 확실히 */
+    }
+    #web-terminal {
+        font-size: 0.8em; /* 모바일에서 폰트 더 작게 */
+    }
+}
+
