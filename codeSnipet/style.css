@@ -153,7 +153,6 @@ body, html {
     /* 또는 overflow-y: auto !important; 만약 세로 스크롤만 확실히 하고 싶다면 */
     height: 100%; /* 부모(.CodeMirror)의 높이를 채우도록 */
 }
-
 /* 모바일 화면 (768px 이하) */
 @media (max-width: 768px) {
     body, html {
@@ -173,61 +172,62 @@ body, html {
 
     .editor-pane { /* 코드 스니펫 영역 전체 */
         width: 100%;
-        /* height: 30vh; */ /* 이전 값 */
-        /* 각 에디터가 5줄(약 100px) + 레이블 + 버튼 공간을 고려하여 높이 재설정 */
-        /* (100px * 3 에디터) + (30px * 3 레이블) + 50px 버튼 + 약간의 여유 = 약 450px */
-        /* vh로 한다면, 최소 이 정도 픽셀 값을 보장하는 vh를 선택 */
-        min-height: 45vh; /* 에디터 패널 전체의 최소 높이를 늘림 */
-        height: auto;     /* 내용이 더 많으면 늘어날 수 있도록 */
+        /* min-height: 45vh; */ /* 이전 값 */
+        height: auto; /* 내부 요소들의 높이에 따라 결정되도록 */
+        display: flex;
+        flex-direction: column;
         order: 1;
-        display: flex; /* 내부 .code-section들이 flex 아이템이 되도록 */
-        flex-direction: column; /* .code-section들을 수직으로 쌓음 */
     }
 
     .code-section { /* HTML, CSS, JS 각 섹션 */
-         flex-grow: 1; /* .editor-pane 내에서 남은 공간을 나눠가짐 */
-         min-height: 0; /* 내부 CodeMirror가 줄어들 수 있도록 */
-         display: flex; /* 내부 label과 CodeMirror를 수직으로 배치 */
-         flex-direction: column;
+        /* flex-grow: 1; */ /* 이 부분을 잠시 제거하고 각 CodeMirror에 직접 높이를 줘봅니다. */
+        min-height: 0; /* 유지 */
+        display: flex;
+        flex-direction: column;
+        /* 각 코드 섹션이 최소한의 높이를 갖도록 합니다. */
+        /* 예를 들어, 레이블 + CodeMirror 최소 높이 */
+        /* height: auto; */ /* 자식 요소인 CodeMirror의 높이에 따르도록 */
     }
     .code-section label {
-        /* 스타일 유지 */
-        flex-shrink: 0;
+        flex-shrink: 0; /* 스타일 유지 */
     }
 
     .CodeMirror { /* 각 에디터 내부 (HTML, CSS, JS) */
-        min-height: 100px; /* 중요: 약 5줄 분량의 최소 높이 (1줄당 20px 가정) */
-                           /* 이 값을 조절하여 원하는 줄 수를 맞추세요. */
-        flex-grow: 1;      /* .code-section 내에서 label을 제외한 나머지 공간 차지 */
+        /* min-height: 100px; */ /* 이전 값 */
+        height: 120px; /* 중요: 고정된 픽셀 높이를 명시적으로 설정 (약 5-6줄 분량) */
+                       /* 이 값을 조절하여 원하는 줄 수를 맞추세요. */
+        /* flex-grow: 1; */ /* 고정 높이를 주므로 flex-grow는 일단 제거 */
+        /* CodeMirror는 내부적으로 overflow:auto를 가짐 */
     }
+    /* 특정 에디터만 다르게 하고 싶다면 ID 사용 */
+    /* #html-panel .CodeMirror { height: 120px; } */
+    /* #css-panel .CodeMirror { height: 100px; } */
+    /* #js-panel .CodeMirror { height: 150px; } */
+
 
     #run-button {
         width: calc(100% - 16px);
         margin: 8px;
-        flex-shrink: 0; /* 버튼 높이 고정 */
+        flex-shrink: 0;
     }
 
     .preview-pane { /* 실행 화면 */
         width: 100%;
-        /* height: 45vh; */ /* 이전 값 */
-        min-height: 35vh; /* 미리보기 높이도 적절히 유지 또는 조정 */
+        min-height: 35vh; /* 최소 높이 유지 */
         height: auto;
         border-top: 2px solid #ddd;
-        order: 2; /* main-content-wrapper 내에서 에디터 패널 다음 */
+        order: 2;
     }
-    /* #preview-frame 스타일은 그대로 유지 */
-
 
     #web-terminal-container { /* 아웃풋 */
         width: 100%;
-        /* height: 25vh; */ /* 이전 값 */
-        min-height: 20vh; /* 터미널 높이도 적절히 유지 또는 조정 */
+        min-height: 20vh; /* 최소 높이 유지 */
         height: auto;
         margin-top: 0;
         border-top: 2px solid #4f5b66;
-        order: 2; /* .container 내에서 main-content-wrapper 다음 */
+        order: 2; /* .container 내에서 main-content-wrapper 다음 (HTML 구조에 따름) */
+                  /* 만약 preview-pane 다음에 오게 하려면 preview-pane order를 2, 터미널 order를 3으로 */
     }
-    /* #web-terminal 내부 스타일은 유지 */
 
     .gutter {
         display: none !important;
@@ -235,6 +235,5 @@ body, html {
 
     .automation-script-viewer {
         display: none;
-        /* order: 3; */
     }
 }
