@@ -1,14 +1,13 @@
-/* style.css */
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: sans-serif;
     background-color: #f0f0f0;
-    overflow: hidden;
+    overflow: hidden; /* 데스크탑: 전체 페이지 스크롤 방지 */
 }
 
-.container {
+.container { /* ID: main-container */
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -29,25 +28,23 @@ body, html {
     background-color: #282c34;
     color: #abb2bf;
     overflow: hidden;
-    /* 초기 너비는 Split.js의 sizes 옵션으로 제어합니다. 예: flex-basis: 30%; */
-    /* min-width: 250px; */ /* 최소 너비 설정 가능 */
+    /* 너비는 script.js의 Split(['#editor-area', '#preview-area']) sizes 옵션으로 제어 */
 }
 
 .preview-pane { /* ID: preview-area */
     background-color: #fff;
     overflow: hidden;
     display: flex;
-    /* 초기 너비는 Split.js의 sizes 옵션으로 제어합니다. 예: flex-basis: 70%; */
-    /* min-width: 300px; */ /* 최소 너비 설정 가능 */
+    flex-direction: column;
+    /* 너비는 script.js의 Split(['#editor-area', '#preview-area']) sizes 옵션으로 제어 */
 }
 
 #preview-frame {
+    flex-grow: 1;
     width: 100%;
-    height: 100%;
     border: none;
 }
 
-/* Split.js 구분선 스타일 */
 .gutter {
     background-color: #4f5b66;
     background-repeat: no-repeat;
@@ -55,16 +52,14 @@ body, html {
     z-index: 10;
     box-sizing: border-box;
 }
-/* .gutter.gutter-horizontal, .gutter.gutter-vertical 스타일은 Split.js gutterSize로 제어 */
+.gutter.gutter-horizontal { cursor: col-resize; }
+.gutter.gutter-vertical { cursor: row-resize; }
 
-
-.code-section { /* HTML, CSS, JS 각 섹션 */
+.code-section {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    min-height: 0; /* Split.js가 높이를 줄일 수 있도록. 중요! */
-    /* 초기 높이 비율은 Split.js의 sizes 옵션으로 제어합니다. */
-    /* 예: flex-basis: calc(X% - Ypx); 실제로는 script.js에서 설정 */
+    min-height: 0;
 }
 .code-section label {
     padding: 6px 10px;
@@ -77,7 +72,7 @@ body, html {
 .CodeMirror {
     flex-grow: 1;
     border: none;
-    min-height: 0; /* 중요! CodeMirror가 줄어들 수 있도록 */
+    min-height: 0;
 }
 
 #run-button {
@@ -95,10 +90,9 @@ body, html {
     background-color: #528baf;
 }
 
-/* --- 웹 터미널 스타일 (변경 없음) --- */
 #web-terminal-container {
     width: 100%;
-    height: 150px; /* 터미널 높이를 약간 줄임 (선택 사항, 기존 180px) */
+    height: 150px; /* 데스크탑 터미널 높이 */
     flex-shrink: 0;
     background-color: #1e1e1e;
     color: #cccccc;
@@ -121,10 +115,17 @@ body, html {
     margin: 0 0 3px 0; white-space: pre-wrap; word-break: break-all;
 }
 
-/* --- 자동화 스크립트 뷰어 스타일 (변경 없음) --- */
 .automation-script-viewer {
-    width: 100%; background-color: #282c34; color: #abb2bf; border-top: 2px solid #4f5b66;
-    padding: 0; box-sizing: border-box; flex-shrink: 0; display: flex; flex-direction: column; overflow: hidden;
+    width: 100%;
+    background-color: #282c34;
+    color: #abb2bf;
+    border-top: 2px solid #4f5b66;
+    padding: 0;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 .automation-script-viewer h3 {
     padding: 8px 10px; background-color: #3a3f4b; margin: 0; font-size: 1.0em;
@@ -134,77 +135,106 @@ body, html {
     flex-grow: 1; border: none; font-size: 0.85em; min-height: 70px;
 }
 
+.CodeMirror { /* 모든 CodeMirror 인스턴스에 적용 */
+    flex-grow: 1;
+    border: none;
+    min-height: 0; /* 부모 flex 아이템으로서 줄어들 수 있도록 */
+    /* CodeMirror 자체적으로 내부 스크롤을 처리하므로,
+       이 요소에 직접 overflow를 설정할 필요는 보통 없습니다.
+       만약 문제가 있다면 다음을 시도해볼 수 있지만, 권장되지는 않습니다.
+       overflow: hidden; /* CodeMirror 내부 스크롤러가 처리하도록 */
+}
+
+/* CodeMirror 내부 스크롤 요소에 대한 명시적 스타일 (보통 불필요) */
+/* 이 부분은 CodeMirror 기본 CSS가 이미 잘 처리해주므로,
+   문제가 있을 때만 디버깅용으로 확인하거나 오버라이드합니다. */
+.CodeMirror-scroll {
+    overflow: auto !important; /* 내용이 넘칠 경우 스크롤바 자동 생성 (세로 및 가로) */
+    /* 또는 overflow-y: auto !important; 만약 세로 스크롤만 확실히 하고 싶다면 */
+    height: 100%; /* 부모(.CodeMirror)의 높이를 채우도록 */
+}
 
 /* 모바일 화면 (768px 이하) */
 @media (max-width: 768px) {
     body, html {
         overflow-y: auto;
-        /* overflow-x: hidden; */
     }
     .container {
-        height: auto; /* 내용에 따라 전체 높이 결정 */
-        min-height: 100vh; /* 최소 뷰포트 높이만큼은 항상 차지 */
-        /* flex-direction: column; 이미 설정됨 */
+        height: auto;
+        min-height: 100vh;
     }
 
     .main-content-wrapper {
-        flex-direction: column; /* 에디터와 미리보기를 수직으로 쌓음 */
-        flex-grow: 0; /* vh 기반 높이 사용 위해 grow 해제 */
-        height: auto; /* 내부 요소 높이에 따름 */
-        order: 1; /* 에디터/미리보기 그룹이 먼저 */
+        flex-direction: column;
+        flex-grow: 0;
+        height: auto;
+        order: 1;
     }
 
-    .editor-pane { /* ID: editor-area */
+    .editor-pane { /* 코드 스니펫 영역 전체 */
+        width: 100%;
+        /* height: 30vh; */ /* 이전 값 */
+        /* 각 에디터가 5줄(약 100px) + 레이블 + 버튼 공간을 고려하여 높이 재설정 */
+        /* (100px * 3 에디터) + (30px * 3 레이블) + 50px 버튼 + 약간의 여유 = 약 450px */
+        /* vh로 한다면, 최소 이 정도 픽셀 값을 보장하는 vh를 선택 */
+        min-height: 45vh; /* 에디터 패널 전체의 최소 높이를 늘림 */
+        height: auto;     /* 내용이 더 많으면 늘어날 수 있도록 */
+        order: 1;
+        display: flex; /* 내부 .code-section들이 flex 아이템이 되도록 */
+        flex-direction: column; /* .code-section들을 수직으로 쌓음 */
+    }
+
+    .code-section { /* HTML, CSS, JS 각 섹션 */
+         flex-grow: 1; /* .editor-pane 내에서 남은 공간을 나눠가짐 */
+         min-height: 0; /* 내부 CodeMirror가 줄어들 수 있도록 */
+         display: flex; /* 내부 label과 CodeMirror를 수직으로 배치 */
+         flex-direction: column;
+    }
+    .code-section label {
+        /* 스타일 유지 */
+        flex-shrink: 0;
+    }
+
+    .CodeMirror { /* 각 에디터 내부 (HTML, CSS, JS) */
+        min-height: 100px; /* 중요: 약 5줄 분량의 최소 높이 (1줄당 20px 가정) */
+                           /* 이 값을 조절하여 원하는 줄 수를 맞추세요. */
+        flex-grow: 1;      /* .code-section 내에서 label을 제외한 나머지 공간 차지 */
+    }
+
+    #run-button {
+        width: calc(100% - 16px);
+        margin: 8px;
+        flex-shrink: 0; /* 버튼 높이 고정 */
+    }
+
+    .preview-pane { /* 실행 화면 */
+        width: 100%;
         /* height: 45vh; */ /* 이전 값 */
-        /* "에디터 부분 비율을 반으로 줄여주고" */
-        /* 기존에 에디터 패널 전체에 vh를 할당했다면, 그 값을 줄입니다. */
-        /* 예를 들어, 전체 화면에서 에디터가 차지하는 비율을 줄이려면, */
-        /* 다른 요소(미리보기, 터미널)와의 합이 100vh를 넘지 않도록 배분합니다. */
-        /* 여기서는 에디터 자체의 높이를 전체 뷰포트의 약 25-30% 정도로 설정합니다. */
-        height: 30vh; /* 예: 전체 뷰포트 높이의 30% (이전보다 줄임) */
-        min-height: 200px; /* 너무 작아지지 않도록 최소 높이 */
-        /* width: 100%; 이미 설정되어 있어야 함 */
-        order: 1; /* .main-content-wrapper 내에서 에디터가 먼저 */
-    }
-    /* .code-section 내 CodeMirror의 min-height는 유지하거나 약간 줄일 수 있습니다. */
-    .CodeMirror {
-        min-height: 50px; /* 각 에디터의 최소 높이를 더 줄임 */
-    }
-
-
-    .preview-pane { /* ID: preview-area */
-        /* height: 25vh; */ /* 이전 값 */
-        /* "실행화면 부분을 두배로 키워줘" */
-        /* 에디터가 줄어든 만큼, 또는 그 이상으로 미리보기 높이를 늘립니다. */
-        height: 45vh; /* 예: 전체 뷰포트 높이의 45% (이전보다 늘림) */
-        min-height: 250px; /* 최소 미리보기 높이 */
+        min-height: 35vh; /* 미리보기 높이도 적절히 유지 또는 조정 */
+        height: auto;
         border-top: 2px solid #ddd;
-        order: 2; /* .main-content-wrapper 내에서 에디터 다음에 미리보기 */
+        order: 2; /* main-content-wrapper 내에서 에디터 패널 다음 */
     }
     /* #preview-frame 스타일은 그대로 유지 */
 
-    .gutter {
-        display: none !important; /* 모바일에서는 Split.js 구분선 숨김 */
-    }
 
-    #web-terminal-container {
-        /* height: 15vh; */ /* 이전 값 */
-        height: 25vh; /* 터미널 높이도 적절히 유지 또는 조절 */
-        min-height: 120px; /* 최소 터미널 높이 */
+    #web-terminal-container { /* 아웃풋 */
+        width: 100%;
+        /* height: 25vh; */ /* 이전 값 */
+        min-height: 20vh; /* 터미널 높이도 적절히 유지 또는 조정 */
+        height: auto;
         margin-top: 0;
         border-top: 2px solid #4f5b66;
-        order: 2; /* .container 내에서 .main-content-wrapper 다음에 터미널 */
-                  /* 만약 main-content-wrapper 내부에 있다면 순서 조정 필요 없음 */
-                  /* 현재 HTML 구조에서는 main-content-wrapper와 같은 레벨이므로 order로 순서 지정 */
+        order: 2; /* .container 내에서 main-content-wrapper 다음 */
     }
-    /* #web-terminal font-size는 이전과 동일하게 0.8em 또는 조절 */
+    /* #web-terminal 내부 스타일은 유지 */
 
+    .gutter {
+        display: none !important;
+    }
 
     .automation-script-viewer {
-        /* display: none; */
-        min-height: 10vh;
-        height: auto; /* 내용에 따라 */
-        order: 3; /* .container 내에서 가장 마지막 */
+        display: none;
+        /* order: 3; */
     }
-    /* .automation-script-viewer .CodeMirror font-size는 이전과 동일 */
 }
