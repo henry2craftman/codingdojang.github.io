@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소프트웨어 융합 전문가 코딩 아카데미</title>
+    <style>
+        /* Basic Reset & Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            color: #2c3e50; /* Dark Blue-Gray */
+            margin-bottom: 0.7em;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            text-align: center;
+            margin-bottom: 0.3em;
+            color: #1a237e; /* Indigo */
+        }
+
+        h2 {
+            font-size: 2em;
+            border-bottom: 2px solid #3f51b5; /* Indigo Accent */
+            padding-bottom: 0.3em;
+            margin-top: 1.5em;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #3f51b5; /* Indigo Accent */
+        }
+
+        h4 {
+            font-size: 1.2em;
+            color: #5c6bc0; /* Lighter Indigo */
+        }
+
+        p {
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        ul {
+            list-style: none; /* Remove default bullets */
+            padding-left: 0;
+        }
+
+        ul li {
+            background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%233f51b5" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>') no-repeat left center;
+            padding-left: 25px; /* Space for the custom bullet */
+            margin-bottom: 0.7em;
+            line-height: 1.5;
+        }
+        ul li strong {
+            color: #1a237e;
+        }
+
+        blockquote {
+            border-left: 4px solid #3f51b5;
+            padding-left: 15px;
+            margin: 1.5em 0;
+            font-style: italic;
+            color: #444;
+            background-color: #f0f2f5;
+            padding: 10px 15px;
+            border-radius: 4px;
+        }
+
+        /* Header */
+        .header-main {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tagline {
+            font-size: 1.3em;
+            color: #e67e22; /* Orange Accent */
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+        section:not(:last-child) {
+            border-bottom: 1px dashed #ddd;
+        }
+
+        /* Feature Grid for Education Fields & Support */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background-color: #e8eaf6; /* Light Indigo Background */
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 5px solid #3f51b5;
+        }
+        .feature-item h3 {
+            margin-top: 0;
+        }
+
+        /* Tech Stack */
+        .tech-stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .tech-category {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .tech-category h4 {
+            margin-top: 0;
+            margin-bottom: 0.5em;
+        }
+        .tech-category p {
+            font-size: 0.9em;
+            margin-bottom: 0;
+        }
+
+        .cta-section { /* CTA 버튼 섹션 */
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #FF6600;
+            color: white;
+            padding: 12px 25px;
+            font-size: 15px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 10px 5px; /* 버튼 간격 조정 */
+            font-weight: bold;
+        }
+        .cta-button:hover {
+            background-color: #E65C00;
+        }
+        .submit-button {
+            display: inline-block;
+            background-color: #4dbc70;
+            color: white;
+            padding: 12px 25px;
+            font-size: 15px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 10px 5px; /* 버튼 간격 조정 */
+            font-weight: bold;
+        }
+        .submit-button:hover {
+            background-color: #4dbc70;
+        }
+        .kakao-button { /* 카카오톡 상담 버튼 */
+            background-color: #FEE500; /* 카카오 노란색 */
+            color: #191919; /* 카카오 검정/갈색 */
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .kakao-button:hover {
+            background-color: #F0D900;
+        }
+        .module-tag { /* 모듈 레벨/대상 태그 (선택 사항) */
+            display: inline-block;
+            background-color: #e0e0e0;
+            color: #555;
+            font-size: 0.9em;
+            padding: 3px 8px;
+            border-radius: 10px;
+            margin-left: 10px;
+        }
+
+          /* ===== 플로팅 홈 버튼 스타일 시작 ===== */
+          .floating-home-button {
+            position: fixed; /* 화면에 고정 */
+            bottom: 20px;    /* 화면 하단에서 20px 위 */
+            right: 20px;     /* 화면 오른쪽에서 20px 왼쪽 */
+            z-index: 1000;   /* 다른 요소들 위에 표시 */
+
+            background-color: #FF6600; /* 버튼 배경색 (기존 버튼과 통일) */
+            color: white;             /* 아이콘/텍스트 색상 */
+            width: 50px;              /* 버튼 너비 */
+            height: 50px;             /* 버튼 높이 */
+            border-radius: 50%;       /* 원형 버튼 */
+
+            display: flex;            /* 내부 요소(아이콘) 정렬을 위해 */
+            justify-content: center;  /* 가로 중앙 정렬 */
+            align-items: center;      /* 세로 중앙 정렬 */
+
+            font-size: 24px;          /* 아이콘 크기 (텍스트/이모지 사용 시) */
+            text-decoration: none;    /* 링크 밑줄 제거 */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 그림자 효과 */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* 부드러운 전환 효과 */
+        }
+
+        .floating-home-button:hover {
+            background-color: #E65C00; /* 호버 시 배경색 변경 */
+            transform: scale(1.05);   /* 약간 확대되는 효과 */
+        }
+
+        .comparison-table {
+        width: 100%;
+        font-size: 13px;
+        border-collapse: collapse;
+        margin-top: 30px;
+        border: 1px solid #ddd; /* 테이블 전체 테두리 추가 */
+        }
+        .comparison-table th, .comparison-table td {
+        border: 1px solid #ddd; /* 테이블 셀 테두리 추가 */
+        padding: 10px;
+        text-align: center;
+        }
+        .comparison-table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        }
+        .ct-emphasis {
+        color: #28a745; /* 코딩도장 강조 색상 */
+        font-weight: bold;
+        }
+        .traditional-emphasis {
+        color: #6a6a6a; /* 기존 학원 강조 색상 */
+        font-weight: bold;
+        }
+        /* ===== 플로팅 홈 버튼 스타일 끝 ===== */
+
+        /* 추가된 스타일 */
+        .target-audience-section div {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .target-audience-section h3 {
+            margin-top: 0;
+            color: #FF6600;
+        }
+        .adult-section div {
+            background-color: #f0fff0; /* 연한 녹색 배경 */
+            border: 1px solid #cce0cc; /* 연한 녹색 테두리 */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .adult-section h3 {
+            margin-top: 0;
+            color: #27ae60; /* 녹색 계열 제목 */
+        }
+        
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2.2em;
+            }
+            h2 {
+                font-size: 1.7em;
+            }
+            .feature-grid, .tech-stack-grid {
+                grid-template-columns: 1fr; /* Stack on smaller screens */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header-main">
+            <h1>🌐 현실과 디지털의 경계를 허문 소프트웨어 융합 전문가의 코딩 아카데미 🚀</h1>
+            <p class="tagline">로봇부터 AI, VR까지! 미래 기술을 경험하는 실전 중심 교육</p>
+        </header>
+
+        <main>
+            <section id="instructor-intro">
+                <h2>👨‍🏫 강사 소개: 소프트웨어 융합 전문가가 직접 이끄는 체계적 코딩 교육</h2>
+                <p>안녕하세요! 저는 <strong>소프트웨어 융복합 전문가</strong>로서 초등학생부터 성인, 대학생까지 다양한 연령층을 교육하고 개발팀을 이끌어온 풍부한 경험을 가지고 있습니다.</p>
+                <p>현재는 <strong>산업용 로봇 시뮬레이션 개발, 실시간 데이터 통신 시스템 구축, 개발자 맞춤형 커리어 코칭</strong>을 진행하며, 물리적인 세계와 디지털 기술의 융합을 통해 더 나은 미래를 만들어가는 데 열정을 쏟고 있습니다.</p>
+                <p>저의 목표는 단순한 코딩 기술 전수를 넘어, <strong>창의적인 문제 해결 능력과 기술 융합 역량</strong>을 갖춘 인재를 양성하는 것입니다.</p>
+            </section>
+
+            <section id="curriculum">
+                <h2>💡 실무 기술로 배우는 차별화된 교육 커리큘럼</h2>
+                <p>저의 코딩 아카데미는 <strong>4차 산업혁명의 핵심 기술</strong>을 체계적으로 전달하며, 실제 산업 현장의 프로젝트 경험을 바탕으로 한 깊이 있는 교육을 제공합니다. 이론과 실습의 균형을 통해 수강생 여러분이 실제 개발 역량을 갖출 수 있도록 돕겠습니다.</p>
+                <h3>🎯 핵심 교육 분야</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h3>🤖 로봇공학 & PLC 제어</h3>
+                        <ul>
+                            <li><strong>Unity + C#</strong>를 활용한 <strong>6축 로봇 시뮬레이터 개발</strong>: MELSEC PLC와의 API 연동 및 실시간 제어 시스템 심층 학습</li>
+                            <li>산업용 설비 시뮬레이션을 통해 실제 현장 적용 능력 배양</li>
+                        </ul>
+                    </div>
+                    <div class="feature-item">
+                        <h3>🧠 AI & 머신러닝</h3>
+                        <ul>
+                            <li>Naver LABs, 국방과학연구소(ADD) 협업 프로젝트 경험 기반 <strong>합성 데이터 생성 기법</strong> 전수</li>
+                            <li>OpenCV, TensorFlow(기초)를 활용한 머신러닝 기초부터 객체 탐지, 실전적인 합성 데이터 활용법 학습</li>
+                        </ul>
+                    </div>
+                    <div class="feature-item">
+                        <h3>🎮 VR/AR & 인터랙티브 시스템</h3>
+                        <ul>
+                            <li><strong>Kinect, LiDAR</strong> 등 뎁스 센서를 활용한 실감 나는 교육용 게임 및 인터랙티브 콘텐츠 개발</li>
+                            <li>실제 센서 데이터 동기화 및 WebGL 기반 데이터 시각화 기술 습득</li>
+                            <li>Unity 최적화 기술(Object Pooling, FSM) 및 UI/UX(DoTween) 디자인 실습, CDN/에셋 번들 배포 전략</li>
+                        </ul>
+                    </div>
+                    <div class="feature-item">
+                        <h3>👁️ 산업용 머신 비전</h3>
+                        <ul>
+                            <li>C++/MFC 기반 MIL SDK 및 OpenCV를 활용한 산업용 <strong>결함 검출 시스템 개발</strong> 노하우 공유</li>
+                            <li>산업 현장에서 즉시 활용 가능한 머신 비전 및 이미지 프로세싱 기술 전수</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="student-support">
+                <h2>🚀 학생을 위한 맞춤형 성장 지원 프로그램</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h3>📈 1:1 커리어 코칭 & 마인드셋 교육</h3>
+                        <p>개발자로서 갖춰야 할 올바른 마인드셋 정립. 개인별 강점 분석 및 목표 설정, 매력적인 포트폴리오 구축 전략을 코칭합니다.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>🛠️ 실전 프로젝트 기반 학습</h3>
+                        <p>수강생이 직접 <strong>로봇 시뮬레이터, AI 이미지 생성기, VR 교육 게임</strong> 등을 개발하며 배운 기술을 응용하고 문제 해결 능력을 향상시킵니다. 아이디어 구상부터 개발, 테스트, 배포까지 전 과정을 경험합니다.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>🤝 팀워크 및 협업 능력 강화</h3>
+                        <p>실제 개발 팀(최대 9인) 리딩 경험을 바탕으로 한 효과적인 협업 프로젝트를 진행합니다. Git을 활용한 버전 관리 및 Agile 방법론을 간접 체험할 수 있습니다.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="expertise">
+                <h2>🌟 강사의 전문성 & 기술 스택</h2>
+                <p><strong>풍부한 실무 노하우:</strong> PLC 시뮬레이션, TCP/IP 실시간 데이터 통신, AI/머신러닝 프로젝트 리딩 등 다년간의 현장 경험을 보유하고 있습니다.</p>
+                
+                <h3>💻 다양한 플랫폼 및 기술 활용 능력:</h3>
+                <div class="tech-stack-grid">
+                    <div class="tech-category">
+                        <h4>Languages</h4>
+                        <p>C#, C++, C, Python</p>
+                    </div>
+                    <div class="tech-category">
+                        <h4>Engines/Frameworks</h4>
+                        <p>Unity (HDRP), .NET</p>
+                    </div>
+                    <div class="tech-category">
+                        <h4>AI/CV</h4>
+                        <p>OpenCV, TensorFlow (기초)</p>
+                    </div>
+                    <div class="tech-category">
+                        <h4>Hardware/Protocols</h4>
+                        <p>PLCs (MELSEC), TCP/IP, Arduino, Raspberry Pi, Kinect, LiDAR</p>
+                    </div>
+                    <div class="tech-category">
+                        <h4>DB/Cloud</h4>
+                        <p>MySQL, SQLite, Google Firebase Realtime DB</p>
+                    </div>
+                    <div class="tech-category">
+                        <h4>Web</h4>
+                        <p>Vue.js, React, Three.js (뷰어용)</p>
+                    </div>
+                    <div class="tech-category">
+                        <h4>Tools</h4>
+                        <p>Git, Docker (경험 기반), Gx-works2, Mx-Component, MIL SDK</p>
+                    </div>
+                    <div class="tech-category">
+                        <h4>Platforms</h4>
+                        <p>Windows (주력), Linux (Ubuntu - ROS/라즈베리파이), Raspberry Pi, Arduino</p>
+                    </div>
+                </div>
+                <p style="margin-top:1em;"><strong>검증된 교육 경력:</strong> 에티버스아카데미(강남), 한국콘텐츠진흥원, 코드랩아카데미, 경기/충남인력개발원 등 다수 기관 출강 및 교육 프로그램 운영 경험이 있습니다.</p>
+            </section>
+
+            <section id="philosophy">
+                <h2>💬 "기술 융합으로 미래를 설계하는 교육"</h2>
+                <blockquote>
+                    "저는 기술의 경계를 넘나드는 융합 능력을 키우는 교육을 추구합니다. 단순히 코드를 작성하는 것을 넘어, 다양한 기술을 창의적으로 결합하여 새로운 가치를 만들어낼 수 있는 인재를 양성하고자 합니다."
+                </blockquote>
+                <ul>
+                    <li><strong>체험형 학습:</strong> VR/AR을 통해 물리적 장비와 디지털 시뮬레이션을 결합하여 생생한 학습 경험 제공</li>
+                    <li><strong>종단적 기술 스택:</strong> AI 합성 데이터 생성부터 PLC 제어까지, 미래 산업에 필요한 기술 스택을 체계적으로 학습</li>
+                    <li><strong>맞춤형 성장:</strong> 1:1 커리어 코칭을 통해 개발자로서의 경쟁력 강화 및 맞춤형 성장 로드맵 수립</li>
+                </ul>
+            </section>
+
+            <section id="program-info">
+                <h2>📝 교육 프로그램 안내</h2>
+                <div>
+                    <h3>🧑‍🎓 교육 대상:</h3>
+                    <ul>
+                        <li>코딩의 세계에 첫발을 내딛는 <strong>초/중/고등학생</strong></li>
+                        <li>전공 역량을 강화하고 싶은 <strong>대학생</strong></li>
+                        <li>새로운 기술 스택을 익히고 싶은 <strong>현직 개발자 및 직장인</strong></li>
+                        <li>기술 기반 창업을 꿈꾸는 <strong>예비 창업가</strong></li>
+                    </ul>
+                </div>
+                <div style="margin-top:1.5em;">
+                    <h3>💡 교육 강점:</h3>
+                    <ul>
+                        <li>산업 현장과 직접 연결된 <strong>실전 프로젝트 중심</strong>의 커리큘럼</li>
+                        <li><strong>최신 기술 트렌드</strong> 반영 (NVIDIA Omniverse 기반 디지털 트윈, ROS 기반 라즈베리파이 프로젝트 등)</li>
+                        <li>개인의 목표(취업/이직/창업/스터디)에 맞춘 <strong>1:1 맞춤형 커리큘럼</strong> 제공</li>
+                    </ul>
+                </div>
+                 <div style="margin-top:1.5em;">
+                    <h3>🏫 강의 환경:</h3>
+                    <ul>
+                        <li>Windows/Linux 개발 환경 완비</li>
+                        <li>최신 하드웨어(PLC, LiDAR, VR 장비 등)를 활용한 실습 환경 제공</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="instructor-message">
+                <h2>💌 강사의 메시지</h2>
+                <blockquote>
+                    "코딩은 상상을 현실로 만들고, 더 나은 세상을 설계하는 강력한 도구입니다. 저의 모든 경험과 지식을 바탕으로 여러분이 기술 융합 능력과 실전 문제 해결력을 갖춘 미래의 핵심 인재로 성장할 수 있도록 최선을 다해 돕겠습니다."
+                </blockquote>
+            </section>
+
+            <!-- ============================ -->
+            <!-- 다음 단계 안내 (Call to Action) -->
+            <!-- ============================ -->
+            <section class="cta-section">
+                <h2>코딩도장에서 생각의 근육을 키워보세요!</h2>
+                <p>자신에게 맞는 과정을 찾고 싶으신가요? <br> 지금 바로 상담 또는 무료 체험수업을 신청해보세요!</p>
+                <a href="trial-application.html" class="cta-button">무료 체험수업 신청</a>  <!-- 실제 링크로 변경 -->
+                <a href="submit.html" class="submit-button">상담 예약하기</a>  <!-- 실제 링크로 변경 -->
+                <a href="http://pf.kakao.com/_WYzxnn/chat" class="cta-button kakao-button">교육 상담 문의<br>(카카오톡 채널)</a>  <!-- 실제 링크로 변경 -->
+            </section>
+
+        </main>
+
+        <footer>
+            <p style="text-align:center; margin-top:30px; font-size:0.9em; color:#777;">
+                © 2025 코딩도장 coding dojang. All Rights Reserved.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript for future interactivity (e.g., smooth scrolling, animations)
+        console.log("코딩 아카데미 웹페이지 로드 완료!");
+
+        // Example: Smooth scroll for anchor links (if you add them later)
+        // document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        //     anchor.addEventListener('click', function (e) {
+        //         e.preventDefault();
+        //         document.querySelector(this.getAttribute('href')).scrollIntoView({
+        //             behavior: 'smooth'
+        //         });
+        //     });
+        // });
+    </script>
+</body>
+</html>
